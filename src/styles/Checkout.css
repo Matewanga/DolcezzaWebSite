@@ -1,0 +1,543 @@
+/* ===========================
+   CHECKOUT CONTAINER (CARD PRINCIPAL)
+=========================== */
+.checkout-container {
+  width: 100%;
+  max-width: 1100px !important;  /* AUMENTADO */
+  margin: 3rem auto;
+  padding: 3.5rem !important;    /* AUMENTADO */
+  background: #ffffff;
+  border-radius: 30px !important;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.15);
+  font-family: "Inter", sans-serif;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+.checkout-input {
+  width: 100%;
+  background: #f8f4ee;
+  padding: 15px 18px;
+  border-radius: 14px;
+  border: 2px solid #e5d6c5;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.25s;
+}
+
+.checkout-input:focus {
+  border-color: #503020;
+  background: #fffaf4;
+}
+
+/* ===========================
+   LABEL
+=========================== */
+.checkout-label {
+  font-weight: 600;
+  color: #503020;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ===========================
+   BOTÕES DE PAGAMENTO
+=========================== */
+.payment-button {
+  padding: 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 2px solid #d9c6b6;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.payment-button:hover {
+  border-color: #503020;
+  background: #f5e9dc;
+  transform: scale(1.04);
+}
+
+.payment-button.active {
+  background: #eed29f;
+  border-color: #503020 !important;
+  box-shadow: 0 0 10px rgba(80, 48, 32, 0.3);
+}
+
+/* ===========================
+   BOTÃO VOLTAR
+=========================== */
+.btn-back {
+  padding: 1.2rem 1.4rem;
+  border-radius: 14px;
+  font-weight: 600;
+  border: 2px solid #c9b7a8;
+  cursor: pointer;
+  background: #fff;
+  transition: 0.25s;
+}
+
+.btn-back:hover {
+  background: #f2e7dc;
+  transform: scale(1.03);
+}
+
+/* ===========================
+   BOTÃO CONTINUAR (PRINCIPAL)
+=========================== */
+.btn-next,
+.btn-primary {
+  flex: 1;
+  padding: 1.25rem !important;
+  border-radius: 18px !important;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.25rem !important;
+  background: linear-gradient(135deg, #503020, #7a4f32) !important;
+  color: white;
+  box-shadow: 0 10px 30px rgba(80, 48, 32, 0.4);
+  transition: 0.3s ease;
+}
+
+.btn-next:hover,
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(80, 48, 32, 0.55);
+}
+
+/* ===========================
+   BOTÃO CONFIRMAR
+=========================== */
+.btn-confirm {
+  width: 100%;
+  padding: 1.3rem !important;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6344ff, #8b73ff);
+  color: white;
+  box-shadow: 0 12px 40px rgba(122, 91, 255, 0.35);
+  transition: 0.3s ease;
+}
+
+.btn-confirm:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* ===========================
+   CARD DO RESUMO DO PEDIDO
+=========================== */
+.order-summary {
+  background: linear-gradient(145deg, #f5e6c8, #eed29f);
+  padding: 3rem !important;              /* AUMENTADO */
+  border-radius: 30px !important;
+  border: 2px solid #e0c9a6;
+  transform: scale(1.1);                 /* MAIOR */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.order-summary h3 {
+  font-size: 24px;
+  color: #503020;
+  margin-bottom: 1.6rem;
+  font-weight: 700;
+}
+
+.order-item {
+  font-size: 17px;
+  color: #4b3a2b;
+}
+
+/* ===========================
+   TOTAL FINAL
+=========================== */
+.order-total {
+  border-top: 2px solid #50302050;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  font-size: 20px;
+  font-weight: 700;
+  color: #503020;
+}
+
+/* ===========================
+   PASSOS — CÍRCULOS
+=========================== */
+.step-circle {
+  width: 65px !important;
+  height: 65px !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.step-circle.active {
+  background: #503020 !important;
+  color: white !important;
+}
+
+.step-circle.inactive {
+  background: #e9d7c7;
+  color: #bba999;
+}
+
+/* ===========================
+   LINHAS ENTRE PASSOS
+=========================== */
+.step-line {
+  width: 80px !important;
+  height: 4px !important;
+  border-radius: 2px;
+  background: #d1bda9;
+}
+
+.step-line.active {
+  background: #503020 !important;
+}
+
+/* ========= Ajustes gerais do modal / card principal ========= */
+/* Alvo: o container branco que fica dentro do overlay (.fixed.inset-0 > .bg-white) */
+.fixed.inset-0 > .bg-white,
+.checkout-container {
+  max-width: 1180px !important;   /* aumentei mais o card geral */
+  padding: 3.6rem !important;     /* mais espaço interno */
+  border-radius: 28px !important;
+  box-shadow: 0 26px 70px rgba(0,0,0,0.22) !important;
+  transform: translateZ(0); /* força composição para sombras */
+}
+
+/* Se quiser um padding extra em telas pequenas */
+@media (max-width: 1024px) {
+  .fixed.inset-0 > .bg-white,
+  .checkout-container {
+    padding: 2.2rem !important;
+    margin: 1.5rem;
+  }
+}
+
+/* ========= Inputs e labels (aumentar espaçamento entre blocos) ========= */
+form.space-y-6 > div,
+form.space-y-6 > .space-y-6 {
+  margin-bottom: 0.9rem;
+}
+
+input[name],
+.checkout-input,
+input[type="text"],
+input[type="number"],
+input[type="tel"] {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid #e8dccb;
+  background: #fbf7f1;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #503020;
+  background: #fffaf4;
+}
+
+/* ====== Título "Forma de Pagamento" centralizado e posicionado ====== */
+.space-y-6 > h3.text-3xl {
+  text-align: center;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.2px;
+}
+
+/* Abaixar os métodos de pagamento e separar do bloco abaixo */
+.grid.grid-cols-3.gap-4.mb-8 {
+  margin-top: 0.6rem;    /* desce um pouco o bloco de opções */
+  margin-bottom: 1.1rem; /* espaço extra entre métodos e conteúdo seguinte */
+  align-items: stretch;
+}
+
+/* ========= Botões de método de pagamento (selecionado com sombra) ========= */
+.payment-btn,
+.payment-button,
+.payment-btn.active,
+.payment-button.active {
+  padding: 14px 12px;
+  border-radius: 14px;
+  border: 2px solid #d9c6b6;
+  background: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+}
+
+/* estado hover */
+.payment-btn:hover,
+.payment-button:hover {
+  transform: translateY(-2px);
+  border-color: #503020;
+  background: #f7efe3;
+}
+
+/* estado ativo — sombra atrás e destaque marrom */
+.payment-btn.active,
+.payment-button.active {
+  background: linear-gradient(180deg, #fff3da 0%, #eed29f 100%);
+  border-color: #503020;
+  box-shadow: 0 10px 30px rgba(80,48,32,0.22), inset 0 -6px 18px rgba(0,0,0,0.03);
+  position: relative;
+}
+
+/* sombra extra atrás do label do método (simulate "glow" atrás do nome do elemento) */
+.payment-btn.active::after,
+.payment-button.active::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -10px;
+  height: 10px;
+  background: linear-gradient(90deg, rgba(80,48,32,0.12), rgba(80,48,32,0.02));
+  filter: blur(8px);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+/* Se quiser um destaque textual separado (o nome com sombra) */
+.payment-btn.active span,
+.payment-button.active span {
+  text-shadow: 0 2px 8px rgba(80,48,32,0.18);
+}
+
+/* ========= Botões Voltar / Continuar ========= */
+/* Botão voltar — deixar com design visível */
+.btn-outline,
+.btn-back {
+  padding: 0.9rem 1.2rem;
+  border-radius: 14px;
+  border: 2px solid #d3c2b4;
+  background: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .16s, box-shadow .16s, background .16s;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* estilo hover do voltar */
+.btn-outline:hover,
+.btn-back:hover {
+  transform: translateY(-2px);
+  background: #f6efe5;
+  border-color: #b69a86;
+}
+
+/* Botão aplicar (aumentar e dar destaque) */
+div.flex.gap-2.items-center.mb-4 > input,
+div.flex.gap-2.items-center.mb-4 > .bg-\[\\#503020\] {
+  vertical-align: middle;
+}
+
+/* Selector genérico para o botão aplicar (no seu TSX é um botão com bg-[#503020]) */
+button[onClick][class*="bg-"],
+button[onClick].bg-\[\\#503020\],
+.bg-\[\\#503020\] {
+  /* não sobrescrever outros botões — alvo apenas onde houver essa classe */
+}
+
+/* Específico para botão aplicar dentro do form (aqui priorizamos selector usado no TSX) */
+form .flex.gap-2.items-center.mb-4 button,
+.form-coupon button,
+.checkout-coupon .apply-btn {
+  padding: 0.7rem 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  min-width: 90px;
+  box-shadow: 0 8px 24px rgba(80,48,32,0.18);
+}
+
+/* Aumenta levemente input do cupom também */
+form .flex.gap-2.items-center.mb-4 input {
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+/* ========= Botão Continuar — diminuir largura, espaço/posição e separar de Voltar ========= */
+/* botão primário do seu TSX tem classe btn-primary */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.6rem;    /* diminui largura (antes era muito largo) */
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  background: linear-gradient(135deg,#503020,#6b4229);
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(80,48,32,0.3);
+  transition: transform .18s ease, box-shadow .18s ease;
+  margin-left: 6px; /* espaço entre voltar e continuar */
+  position: relative;
+  top: 2px; /* abaixa um pouco (parece estar muito pra cima) */
+}
+
+/* hover mais suave */
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(80,48,32,0.4);
+}
+
+/* garantir que o botão voltar e continuar tenham gap quando juntos */
+.form-buttons { display:flex; gap:12px; align-items:center; }
+
+/* caso continue usando .flex.gap-4.pt-6 container, forcemos um pequeno ajuste */
+.flex.gap-4.pt-6 { align-items:center }
+
+/* ========= Ajuste vertical para o bloco de pagamento (descer/ separar elementos) ========= */
+.space-y-6.animate-fade-in > .grid.grid-cols-3.gap-4.mb-8 {
+  margin-top: .85rem;
+  margin-bottom: 1.15rem;
+}
+
+/* separador entre pagamentos e campos abaixo */
+.space-y-6.animate-fade-in > .grid.grid-cols-3.gap-4.mb-8 + div {
+  margin-top: 0.9rem;
+}
+
+/* ========= Card do resumo do pedido (aquele card marrom) ========= */
+/* No TSX esse card tem classes do Tailwind, vamos mirar nessas classes genéricas */
+.bg-gradient-to-br.from-\[\#f5e6c8\].to-\[\#eed29f\],
+.bg-gradient-to-br,
+.order-summary,
+.summary-card,
+.checkout-summary {
+  padding: 2.8rem !important;  /* aumentar */
+  border-radius: 22px !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+  transform: none !important;
+  border: 1px solid rgba(80,48,32,0.06);
+}
+
+/* aumentar fonte do resumo e espaçamento dos itens */
+.bg-gradient-to-br h3,
+.order-summary h3 {
+  font-size: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.bg-gradient-to-br .flex.justify-between.text-sm.mb-2,
+.order-summary .order-item {
+  font-size: 16px;
+  margin-bottom: .75rem;
+}
+
+/* destaque do total (maior e mais visível) */
+.bg-gradient-to-br .font-bold,
+.order-summary .order-total,
+.checkout-summary .order-total {
+  font-size: 18px;
+  font-weight: 800;
+  color: #422a1c;
+}
+
+/* ========= PIX: aumentar o card quando PIX selecionado ========= */
+/* no TSX, o texto aparece em formData.paymentMethod === "pix" bloco com <p> */
+/* vamos aumentar o tamanho do QR container quando existir pixQr ou quando o método pix estiver selecionado */
+.payment-pix-card,
+.pix-qr,
+.payment-btn.pix,
+.payment-btn--pix {
+  min-height: 160px;
+  padding: 18px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fffaf4;
+  border: 2px solid #ecd8b8;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* se quiser aplicar quando formData.paymentMethod === 'pix' (CSS puro não acessa state) — use classes no TSX
+   mas essa regra cobrirá caso já tenha classe ou se o QR for mostrado. */
+
+/* ========= Espaçamento entre elementos não grudados ========= */
+.space-y-6 > * { margin-bottom: 0.9rem; }
+.space-y-5 > * { margin-bottom: 0.8rem; }
+
+/* ========= Responsividade ========= */
+@media (max-width: 768px) {
+  .fixed.inset-0 > .bg-white,
+  .checkout-container { padding: 1.6rem !important; max-width: 92% }
+  .order-summary { padding: 1.6rem !important; transform: none !important; }
+  .payment-btn, .payment-button { min-height: 52px; padding: 12px; }
+  .btn-primary { width: 48%; padding: .85rem .9rem; font-size: 1rem; top: 0; }
+  .btn-outline { width: 48%; }
+  .form-buttons { gap: 10px; flex-wrap: wrap; }
+}
+body { font-family: 'Inter', sans-serif; }
+.checkout-wrapper { background: white; border-radius: 2rem; max-width: 1200px; width: 100%; padding: 2rem; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+.close-btn { position: absolute; top:1.5rem; right:1.5rem; width:2.5rem; height:2.5rem; border-radius:50%; background:#f0f0f0; display:flex; align-items:center; justify-content:center; transition:0.2s; }
+.close-btn:hover { background:#e0e0e0; }
+.steps-wrapper { display:flex; justify-content:center; gap:1rem; margin-bottom:2rem; }
+.step-item { display:flex; align-items:center; gap:0.5rem; }
+.step-circle { width:3rem; height:3rem; border-radius:50%; background:#e0e0e0; display:flex; align-items:center; justify-content:center; color:#aaa; transition:0.3s; }
+.step-circle.active { background:#503020; color:white; }
+.step-line { width:4rem; height:0.25rem; background:#e0e0e0; border-radius:0.125rem; transition:0.3s; }
+.step-line.active { background:#503020; }
+form input, form select { width:100%; padding:0.5rem 0.75rem; border:1px solid #ccc; border-radius:0.5rem; outline:none; transition:0.2s; }
+form input:focus, form select:focus { border-color:#503020; }
+.coupon-row { display:flex; gap:0.5rem; margin-bottom:1rem; }
+.coupon-input { flex:1; border-radius:0.5rem; border:1px solid #ccc; padding:0.5rem 0.75rem; }
+.coupon-btn { background:#503020; color:white; padding:0.5rem 1rem; border-radius:0.5rem; transition:0.2s; }
+.coupon-btn:hover { background:#402217; }
+.fade-section { animation: fadeIn 0.3s ease; }
+.confirm-section { text-align:center; padding:2rem 0; }
+.confirm-icon { font-size:2.5rem; color:#503020; margin-bottom:1rem; }
+.pix-info { font-size:1rem; color:#503020; }
+.btn-primary { background:#503020; color:white; padding:0.75rem 1.5rem; border-radius:1rem; font-weight:600; transition:0.2s; }
+.btn-primary:hover { background:#402217; }
+.btn-outline { background:transparent; border:2px solid #503020; color:#503020; padding:0.75rem 1.5rem; border-radius:1rem; font-weight:600; transition:0.2s; }
+.btn-outline:hover { background:#503020; color:white; }
+.summary-card { background: linear-gradient(135deg,#f5e6c8,#eed29f); border-radius:2rem; padding:1.5rem; position:sticky; top:2rem; box-shadow:0 5px 20px rgba(0,0,0,0.1);}
+.summary-title { font-size:1.25rem; font-weight:600; color:#503020; margin-bottom:1rem; }
+.summary-item { display:flex; justify-content:space-between; font-size:0.95rem; margin-bottom:0.25rem; }
+.summary-discount { display:flex; justify-content:space-between; font-size:1rem; color:green; font-weight:600; margin-bottom:0.25rem; }
+.summary-total { border-top:1px solid #50302033; margin-top:0.5rem; padding-top:0.5rem; }
+.summary-line { display:flex; justify-content:space-between; margin-bottom:0.25rem; }
+.summary-line.total { font-weight:700; font-size:1.1rem; }
+.payment-methods { display:flex; gap:1rem; margin-bottom:1rem; }
+.payment-btn { flex:1; padding:0.5rem 0; border-radius:1rem; border:1px solid #ccc; background:#f5f5f5; transition:0.2s; font-weight:600; }
+.payment-btn.active { background:#503020; color:white; border-color:#503020; }
+.action-row { display:flex; gap:1rem; margin-top:1rem; justify-content:flex-end; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+@media(max-width:1024px){.grid.lg\:grid-cols-3{grid-template-columns:1fr !important;}.summary-card{position:relative;top:0;margin-top:1rem;}}
+
+.payment-title {
+  text-align: center;
+  margin-bottom: 2rem; /* Espaço maior embaixo */
+}

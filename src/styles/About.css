@@ -1,0 +1,241 @@
+/* === SEÇÃO: Tela inteira === */
+.about-section {
+  min-height: 100vh;
+  background: white;
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Container centralizado */
+.about-container {
+  width: 100%;
+  max-width: 1350px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Grid principal */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* =======================
+      IMAGENS
+======================= */
+.about-images {
+  position: relative;
+}
+
+.about-images-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Main Image */
+.main-image-wrapper {
+  grid-column: 1 / span 2;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+}
+
+.main-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Small images */
+.small-image-wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.small-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Floating stats card */
+.floating-card {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  background: #503020;
+  color: white;
+  padding: 28px;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+.floating-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.floating-icon {
+  width: 65px;
+  height: 65px;
+  background: #ffaaaa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-icon-inner {
+  width: 36px;
+  height: 36px;
+  color: #503020;
+}
+
+.floating-number {
+  font-size: 40px;
+  margin-bottom: 2px;
+}
+
+.floating-label {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* =======================
+      CONTENT
+======================= */
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Badge */
+.about-badge {
+  display: inline-block;
+  padding: 8px 18px;
+  font-size: 14px;
+  background: rgba(238, 210, 159, 0.3);
+  color: #503020;
+  border-radius: 20px;
+}
+
+/* Title */
+.about-title {
+  font-size: 54px;
+  color: #503020;
+  margin-top: 10px;
+}
+
+/* Texts */
+.about-text-lg {
+  font-size: 22px;
+  color: #555;
+}
+
+.about-text-md {
+  font-size: 18px;
+  color: #666;
+}
+
+/* Stats cards */
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.about-stat-card {
+  background: #f5e6c8;
+  padding: 22px;
+  border-radius: 20px;
+}
+
+.stat-icon {
+  width: 28px;
+  height: 28px;
+  color: #503020;
+  margin-bottom: 8px;
+}
+
+.stat-number {
+  font-size: 32px;
+  color: #503020;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Checklist */
+.about-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.check-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffaaaa;
+  flex-shrink: 0;
+}
+
+/* Button */
+.about-button {
+  margin-top: 10px;
+  background: #503020;
+  color: white;
+  padding: 16px 36px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+
+  display: flex;               /* CENTRALIZA */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  width: fit-content;          /* deixa do tamanho certinho */
+  text-decoration: none;       /* remove sublinhado */
+}
+
+.about-button:hover {
+  background: #3d2418;
+  transform: scale(1.05);
+}
+
+/* =======================
+      RESPONSIVO
+======================= */
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .floating-card {
+    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -50px;
+  }
+}

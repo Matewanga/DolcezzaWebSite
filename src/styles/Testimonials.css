@@ -1,0 +1,352 @@
+/* Faz a seção ocupar a tela inteira */
+.testimonials-section {
+  min-height: 100vh;
+  padding: 5rem 0;
+  background: linear-gradient(to bottom, #f5e6c8, white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 1.5rem;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.header .tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: white;
+  color: #503020;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.header h2 {
+  font-size: 3rem;
+  color: #503020;
+  margin-top: 1rem;
+}
+
+.header p {
+  font-size: 1.3rem;
+  color: #666;
+  max-width: 700px;
+  margin: 1rem auto 0;
+}
+
+/* GRID CENTRALIZADO */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 2rem;
+  margin-bottom: 5rem;
+
+  /* Centraliza horizontalmente */
+  justify-items: center;
+}
+
+/* CARD */
+.testimonial-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 380px;
+
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+  transition: 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.quote-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  opacity: 0.08;
+}
+
+.quote-svg {
+  width: 55px;
+  height: 55px;
+  color: #503020;
+}
+
+.avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(to bottom right, #eed29f, #e5c68d);
+  border-radius: 50%;
+  font-size: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.stars {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 1rem;
+}
+
+.star {
+  width: 22px;
+  height: 22px;
+  fill: #ffaaaa;
+  color: #ffaaaa;
+}
+
+.content {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* STATS BAR */
+.stats-bar {
+  background: linear-gradient(to right, #503020, #6b4530);
+  padding: 3rem;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  text-align: center;
+  gap: 2rem;
+  color: white;
+}
+
+.stat-number {
+  font-size: 3rem;
+  color: #ecc18c; /* tom bem mais claro e suave f8d9b3*/
+}
+
+.stat-label {
+  color: #f3e5cdbb; /* bege claro e translúcido */
+}
+
+/* FORMULÁRIO DE ADICIONAR DEPOIMENTO (NOVO E MELHORADO) */
+.add-testimonial-box {
+  width: 100%;
+  max-width: 600px; /* deixa mais estreito e elegante */
+  margin: 3rem auto;
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 2rem;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+  border: 1px solid #f0e4d4;
+}
+
+/* TEXTO */
+.add-testimonial-box textarea {
+  width: 100%;
+  height: 110px;
+  border-radius: 15px;
+  padding: 1rem;
+  background: #faf7f2;
+  border: 1px solid #eadac2;
+  font-size: 1rem;
+  color: #503020;
+  resize: none;
+  transition: 0.2s;
+}
+
+.add-testimonial-box textarea:focus {
+  border-color: #ffaaaa;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px #ffaaaa55;
+}
+
+/* ESTRELAS DE AVALIAÇÃO */
+.stars-select {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 1.2rem 0;
+}
+
+.stars-select .star {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+.stars-select .star:hover {
+  transform: scale(1.15);
+}
+
+.stars-select .selected {
+  color: #ff8888;
+  fill: #ff8888;
+  opacity: 1;
+}
+
+/* BOTÃO ENVIAR — PREMIUM DEGRADE ROSÉ */
+.send-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffb7c5, #ff9aa8);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 6px 20px rgba(255, 140, 160, 0.35);
+  margin-top: 1.4rem;     /* 🔥 adicionando espaço extra acima */
+}
+
+.send-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 125, 150, 0.45);
+  filter: brightness(1.1);
+}
+
+/* AÇÕES (LIMPAR / CANCELAR) — CLEAN E BONITOS */
+/* CONTAINER DAS AÇÕES */
+.actions {
+  display: flex;
+  gap: 1rem;           /* 🔥 espaço entre EDITAR e EXCLUIR */
+  margin-top: 1.2rem;  /* 🔥 desce os botões */
+}
+
+.actions-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.4rem;
+  margin-top: 1.4rem;
+}
+
+.actions-row button {
+  padding: 0.75rem 1.4rem;
+  border-radius: 15px;
+  background: rgba(255, 230, 235, 0.8);
+  border: 1px solid #ffdce2;
+  color: #6a3b3b;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 3px 10px rgba(255, 180, 190, 0.25);
+}
+
+.actions-row button:hover {
+  background: rgba(255, 210, 220, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 16px rgba(255, 150, 170, 0.35);
+}
+
+/* EXCLUIR */
+.delete-btn {
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 180, 180, 0.85);
+  border: 1px solid #ffb3b3;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  color: #7a2a2a;
+  cursor: pointer;
+  transition: 0.2s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 3px 10px rgba(255, 150, 150, 0.25);
+}
+
+.delete-btn:hover {
+  background: rgba(255, 150, 150, 0.95);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 16px rgba(255, 120, 120, 0.35);
+}
+.testimonial-form {
+  max-width: 360px; /* Deixa tudo menos largo */
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.testimonial-form h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.testimonial-form textarea {
+  width: 100%;
+  height: 110px;
+  padding: 12px;
+  border: 1px solid #e5a2bb;
+  border-radius: 12px;
+  resize: none;
+  outline: none;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.testimonial-form textarea:focus {
+  border-color: #ff7cb8;
+  box-shadow: 0 0 6px #ff7cb870;
+}
+
+.testimonial-form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 500;
+  color: #444;
+}
+
+.testimonial-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e5a2bb;
+  border-radius: 12px;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-enviar {
+  margin-top: 18px;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #ff7cc3, #ffa6d9);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(255, 126, 179, 0.4);
+}
+
+.btn-enviar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(255, 126, 179, 0.5);
+}

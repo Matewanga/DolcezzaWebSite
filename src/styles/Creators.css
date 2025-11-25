@@ -1,0 +1,283 @@
+/* ===== NAVBAR ===== */
+.navbar {
+  width: 100%;
+  background: #ffe8d1;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== LOGO + SUBTÍTULO ===== */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logo-img {
+  width: 60px;
+}
+
+.navbar-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.navbar-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #503020;
+  text-decoration: none;
+}
+
+.logo-sub {
+  font-size: 14px;
+  color: #7a5c4b;
+  margin-top: 2px;
+}
+
+/* ===== LINKS DO MEIO (CENTRALIZADOS) ===== */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-item {
+  font-size: 18px;
+  color: #503020;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-item:hover {
+  color: #ff6f61;
+}
+
+/* ===== BOTÃO VOLTAR ===== */
+.nav-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #503020;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.nav-back-btn:hover {
+  background: #ffaaaa;
+  color: #503020;
+  transform: translateY(-3px);
+}
+
+/* ===== SEÇÃO PRINCIPAL ===== */
+.creators-section {
+  min-height: 100vh;
+  background: #fffaf5;
+  padding: 80px 20px;
+}
+
+.creators-container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.creators-title {
+  font-size: 48px;
+  color: #503020;
+}
+
+.creators-description {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  text-align: justify;
+}
+
+/* ===== GRID ===== */
+.creators-grid {
+  margin-top: 40px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* ===== CARD ===== */
+.creator-card {
+  background: #fff5e6;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.creator-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+}
+
+/* ===== FOTO CENTRALIZADA ===== */
+.creator-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 16px auto;
+  border: 4px solid #ffe8d1;
+}
+
+.creator-name {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.creator-bio {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+/* ===== ÍCONES ===== */
+.creator-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.creator-links a {
+  width: 40px;
+  height: 40px;
+  background: #503020;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.creator-links a:hover {
+  background: #ffaaaa;
+  color: #503020;
+  transform: scale(1.15);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #2b1a14;
+  color: #fff;
+  padding: 70px 40px 30px;
+  margin-top: 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo-image {
+  width: 60px;
+}
+
+.brand-description {
+  margin-top: 12px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.contact-bar {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bottom-bar {
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  color: #ccc;
+}
+
+
+/* Deixa o logo e subtítulo em coluna */
+.logo-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  line-height: 1.1;
+}
+
+/* Subtítulo */
+.logo-sub {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Centraliza os links */
+.navbar-center {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+/* Botão de voltar bonito */
+.nav-back-btn {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s ease;
+}
+
+.nav-back-btn:hover {
+  background: #e63b5c;
+}
+

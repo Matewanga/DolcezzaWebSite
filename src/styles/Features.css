@@ -1,0 +1,97 @@
+/* === Seção ocupa a tela inteira === */
+.features-section {
+  min-height: 100vh;
+  padding: 80px 0;
+  background: linear-gradient(to bottom, white, #f5e6c8);
+  display: flex;
+  align-items: center;
+}
+
+/* === Centraliza tudo === */
+.features-container {
+  max-width: 1300px;
+  width: 100%;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* === Cabeçalho === */
+.features-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.features-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(238, 210, 159, 0.3);
+  color: #503020;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.features-title {
+  font-size: 48px;
+  color: #503020;
+  margin-top: 20px;
+}
+
+/* === GRID CENTRALIZADO === */
+.features-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* === CARD === */
+.feature-card {
+  background: white;
+  width: 330px;
+  border-radius: 28px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* === Ícone === */
+.feature-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background: #ffaaaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  transition: 0.3s ease;
+}
+
+.feature-card:hover .feature-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.feature-icon {
+  width: 35px;
+  height: 35px;
+  color: white;
+}
+
+/* === Título e descrição === */
+.feature-title {
+  font-size: 22px;
+  color: #503020;
+  margin-bottom: 10px;
+}
+
+.feature-desc {
+  font-size: 15px;
+  color: #666;
+}

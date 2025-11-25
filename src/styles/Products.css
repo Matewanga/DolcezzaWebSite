@@ -1,0 +1,309 @@
+/* ============================
+   SEÇÃO
+============================ */
+.products-section {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+.products-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* ============================
+   CABEÇALHO
+============================ */
+.products-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.products-tag {
+  display: inline-block;
+  background: #eed29f50;
+  padding: 10px 22px;
+  border-radius: 50px;
+  color: #503020;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.products-title {
+  font-size: 52px;
+  color: #503020;
+  margin-bottom: 25px;
+}
+
+.products-subtext {
+  font-size: 20px;
+  color: #555;
+  max-width: 650px;
+  margin: auto;
+}
+
+/* ============================
+   CATEGORIAS
+============================ */
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 60px;
+}
+
+.category-btn {
+  padding: 14px 26px;
+  border-radius: 40px;
+  font-size: 16px;
+  background: #f2f2f2;
+  color: #666;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.category-btn:hover {
+  background: #e3e3e3;
+}
+
+.category-btn.active {
+  background: #503020;
+  color: white;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px #00000030;
+}
+
+/* ============================
+   GRID
+============================ */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 35px;
+}
+
+/* ============================
+   CARD
+============================ */
+.product-card {
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  transition: 0.3s;
+  box-shadow: 0 4px 14px #00000015;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px #00000025;
+}
+
+/* ============================
+   IMAGEM
+============================ */
+.product-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 260px;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+  border-radius: 10px;
+
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.12);
+}
+
+/* ============================
+   BADGE
+============================ */
+.product-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #ffaaaa;
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 20px;
+}
+
+/* ============================
+   FAVORITO
+============================ */
+.fav-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 3px 10px #00000030;
+}
+
+.fav-icon {
+  color: #666;
+  transition: 0.3s;
+}
+
+.fav-active {
+  color: #ff8888 !important;
+  fill: #ff8888;
+  transform: scale(1.15);
+}
+
+/* ============================
+   QUICK ADD
+============================ */
+.quick-add {
+  position: absolute;
+  bottom: -70px;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, #00000080, transparent);
+  padding: 15px;
+  transition: 0.3s;
+}
+
+.product-card:hover .quick-add {
+  bottom: 0;
+}
+
+.add-cart-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  font-size: 15px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  color: #503020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ============================
+   INFO
+============================ */
+.product-info {
+  padding: 22px;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.star-icon {
+  width: 18px;
+  height: 18px;
+  color: #ccc;
+}
+
+.star-filled {
+  color: #ffaaaa;
+  fill: #ffaaaa;
+}
+
+.rating-text {
+  font-size: 14px;
+  color: #777;
+}
+
+.product-name {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: #503020;
+}
+
+.product-desc {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 18px;
+  min-height: 40px;
+}
+
+/* ============================
+   FOOTER DO CARD
+============================ */
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price {
+  font-size: 24px;
+  color: #503020;
+}
+
+.small-cart-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #503020;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.small-cart-btn:hover {
+  transform: scale(1.1);
+}
+
+.small-cart-icon {
+  color: white;
+  margin-left: -3px;
+}
+
+/* ============================
+   BOTÕES VER MAIS / MENOS
+============================ */
+.view-more-wrapper {
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* espaço entre os botões */
+  align-items: center;
+}
+
+.view-more-btn {
+  padding: 16px 40px;
+  font-size: 20px;
+  background: #503020;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 14px #00000030;
+}
+
+.view-more-btn:hover {
+  background: #3d2418;
+  transform: scale(1.07);
+}

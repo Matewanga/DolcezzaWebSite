@@ -1,0 +1,7 @@
+# FRONTEND
+.env
+.env.local
+
+# BACKEND
+/backend/.env
+/backend/.env.local

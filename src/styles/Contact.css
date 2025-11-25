@@ -1,0 +1,262 @@
+/* ============================
+   SECTION BASE
+============================ */
+.contact-section {
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  background: linear-gradient(to bottom, white, #f5e6c8);
+  display: flex;
+  align-items: center;
+}
+
+/* Centraliza todo o conteúdo */
+.contact-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-container {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ============================
+   LINHA DECORATIVA
+============================ */
+.header-line {
+  width: 120px;
+  height: 4px;
+  background: #503020;
+  margin: 0 auto 1.5rem auto;
+  border-radius: 10px;
+}
+
+/* ============================
+   HEADER
+============================ */
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  background: rgba(238, 210, 159, 0.3);
+  color: #503020;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.contact-header h2 {
+  font-size: 3rem;
+  color: #503020;
+  margin-bottom: 1rem;
+}
+
+.contact-header p {
+  color: #6b6b6b;
+  font-size: 1.2rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ============================
+   GRID LAYOUT
+============================ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* ============================
+   INFO CARDS — 4 EM LINHA
+============================ */
+/* CARDS PEQUENOS */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  /* 🔥 deixa MUITO mais próximos */
+  column-gap: 0.2rem;
+  row-gap: 0.3rem;
+
+  /* Mantém a distância do card grande */
+  margin-bottom: 1.8rem;
+  margin-top: -25px;
+}
+
+.contact-card {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* 🔥 Faz eles ficarem mais perto */
+  transform: scale(0.85);
+  transform-origin: center; /* ⭐ ESSA LINHA ajeita tudo */
+}
+
+/* Icons */
+.icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.phone { background: linear-gradient(45deg, #ffaaaa, #ff8888); }
+.email { background: linear-gradient(45deg, #eed29f, #e5c68d); }
+.address { background: linear-gradient(45deg, #503020, #6b4530); }
+.hours-icon { background: rgba(80, 48, 32, 0.25); }
+
+/* Button */
+.card-btn {
+  background: none;
+  border: none;
+  color: #503020;
+  font-weight: 600;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card-btn:hover {
+  color: #ffaaaa;
+}
+
+/* ============================
+   FORM AREA
+============================ */
+.contact-form-wrapper {
+  background: white;
+  padding: 2.4rem;
+  border-radius: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transform: scale(0.9);
+  transform-origin: top center;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #503020;
+  margin-bottom: 1.5rem;
+}
+
+.form-header h3 {
+  font-size: 1.9rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #503020;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid #ddd;
+  font-size: 1rem;
+  transition: 0.3s;
+  background: #fafafa;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ffaaaa;
+  outline: none;
+  background: white;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  background: #503020;
+  color: white;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #3d2418;
+  transform: scale(1.05);
+}
+
+/* Quick contact */
+.quick-contact {
+  margin-top: 1rem;
+  padding: 1.1rem;
+  background: rgba(238, 210, 159, 0.2);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.quick-contact a {
+  color: #503020;
+  font-weight: bold;
+}
+
+/* ============================
+   RESPONSIVO
+============================ */
+@media (max-width: 1100px) {
+  .contact-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
+}

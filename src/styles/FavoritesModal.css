@@ -1,0 +1,67 @@
+.fav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+.fav-modal {
+  width: 100%;
+  max-width: 450px;
+  background: #fff;
+  padding: 28px;
+  border-radius: 24px;
+  position: relative;
+}
+
+.fav-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #f3f3f3;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.fav-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #503020;
+}
+
+.fav-loading,
+.fav-empty {
+  text-align: center;
+  color: #666;
+}
+
+.fav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.fav-card {
+  background: #fafafa;
+  padding: 10px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.fav-img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 14px;
+}

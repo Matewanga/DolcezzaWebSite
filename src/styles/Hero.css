@@ -1,0 +1,256 @@
+/* ===================== HERO GERAL ===================== */
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom right, #f5e6c8, white, #eed29f);
+  height: 100vh; /* HERO ocupa a tela toda */
+  display: flex;
+  align-items: center;
+}
+
+/* ===================== DECORAÇÃO ===================== */
+
+.hero-deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.hero-deco-1 {
+  top: -80px;
+  left: -80px;
+  width: 350px;
+  height: 350px;
+  background: rgba(255, 170, 170, 0.15);
+}
+
+.hero-deco-2 {
+  bottom: -80px;
+  right: -80px;
+  width: 380px;
+  height: 380px;
+  background: rgba(80, 48, 32, 0.12);
+}
+
+/* ===================== GRID ===================== */
+
+.hero-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.6rem;
+  position: relative;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  height: 100%;
+}
+
+/* ===================== TEXTO ===================== */
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  transform: translateY(-40px);
+  padding-left: 30px; /* ⭐ */
+}
+
+
+/* Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 8px 18px;
+  border-radius: 40px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.badge-icon {
+  width: 16px;
+  height: 16px;
+  color: #ffaaaa;
+  fill: #ffaaaa;
+}
+
+/* Title */
+.hero-title {
+  font-size: 3.4rem;
+  font-weight: 700;
+  color: #503020;
+  line-height: 1.05;
+  margin-left: 10px;  /* ajuste o valor: 10px, 20px, 30px... */
+}
+
+
+.hero-title span {
+  display: block;
+  margin-top: 5px;
+  color: #ffaaaa;
+  
+}
+
+/* Subtext */
+.hero-subtext {
+  max-width: 500px;
+  font-size: 1.18rem;
+  color: #666;
+}
+
+/* ===================== BOTÕES ===================== */
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: 0.25s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hero-btn-primary {
+  background: #503020;
+  color: white;
+}
+
+.hero-btn-primary:hover {
+  background: #3d2418;
+  transform: scale(1.05);
+}
+
+.hero-btn-secondary {
+  background: white;
+  border: 2px solid #503020;
+  color: #503020;
+}
+
+.hero-btn-secondary:hover {
+  background: #f7f7f7;
+  transform: scale(1.05);
+}
+
+.arrow-icon {
+  transition: transform 0.25s;
+}
+
+.hero-btn-primary:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* ===================== FEATURES ===================== */
+
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding-top: 10px;
+}
+
+.hero-feature {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.hero-feature-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 8px;
+  background: rgba(255, 170, 170, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================== IMAGEM ===================== */
+
+.hero-image-wrapper {
+  position: relative;
+  height: 100%;
+  transform: translateX(25px); /* ⭐ MOVE A IMAGEM PARA A DIREITA */
+}
+
+
+.hero-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  height: 100vh; /* 🌟 FAZ A IMAGEM PEGAR A TELA TODA */
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.18), transparent);
+}
+
+/* Círculos decorativos da imagem */
+.hero-image-circle1,
+.hero-image-circle2 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.hero-image-circle1 {
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 170, 170, 0.25);
+}
+
+.hero-image-circle2 {
+  bottom: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  background: rgba(80, 48, 32, 0.15);
+}
+
+/* ===================== RESPONSIVO ===================== */
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 40px;
+  }
+
+  .hero-image-container {
+    height: 60vh;
+  }
+
+  .hero-text {
+    transform: translateY(0);
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+}
+
