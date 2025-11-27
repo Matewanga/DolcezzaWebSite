@@ -5,7 +5,7 @@ import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { QRCodeCanvas } from "qrcode.react"; // QR Code direto
+import { QRCodeCanvas } from "qrcode.react";
 import "../styles/Checkout.css";
 
 interface CheckoutProps {
@@ -32,6 +32,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     cardExpiry: "",
     cardCVV: "",
   });
+
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [pixCode, setPixCode] = useState("");
@@ -63,9 +64,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
 
   const maskCard = (card: string) => {
     const onlyDigits = card.replace(/\D/g, "");
-    return onlyDigits.length <= 4
-      ? onlyDigits
-      : "**** **** **** " + onlyDigits.slice(-4);
+    return onlyDigits.length <= 4 ? onlyDigits : "**** **** **** " + onlyDigits.slice(-4);
   };
 
   const applyCoupon = () => {
@@ -109,7 +108,9 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
       await savePaymentData?.({ addressInfo, paymentInfo }).catch(() => {});
 
       if (formData.paymentMethod === "pix") {
-        setPixCode(`00020126580014BR.GOV.BCB.PIX0136fake-pix-chave-dolcezza5204000053039865405100.005802BR5925DOLCEZZA CONFEITARIA6009SaoPaulo62070503***6304ABCD`);
+        setPixCode(
+          `00020126580014BR.GOV.BCB.PIX0136fake-pix-chave-dolcezza5204000053039865405100.005802BR5925DOLCEZZA CONFEITARIA6009SaoPaulo62070503***6304ABCD`
+        );
       }
 
       setStep(3);
@@ -182,6 +183,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="space-y-6">
+
               {/* CUPOM */}
               <div className="coupon-row">
                 <input
@@ -201,15 +203,19 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                 <div className="fade-section">
                   <h3 className="text-3xl text-[#503020] mb-4">Endereço de Entrega</h3>
                   <div><label>Endereço</label><input name="address" value={formData.address} onChange={handleChange} required /></div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div><label>Número</label><input name="number" value={formData.number} onChange={handleChange} required /></div>
-                    <div><label>Complemento (opcional)</label><input name="complement" value={formData.complement} onChange={handleChange} /></div>
+                    <div><label>Complemento</label><input name="complement" value={formData.complement} onChange={handleChange} /></div>
                   </div>
+
                   <div><label>Bairro</label><input name="neighborhood" value={formData.neighborhood} onChange={handleChange} required /></div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div><label>Cidade</label><input name="city" value={formData.city} onChange={handleChange} required /></div>
                     <div><label>Estado</label><input name="state" value={formData.state} onChange={handleChange} required /></div>
                   </div>
+
                   <div><label>CEP</label><input name="zipCode" value={formData.zipCode} onChange={handleChange} required /></div>
                 </div>
               )}
@@ -218,6 +224,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
               {step === 2 && (
                 <div className="fade-section">
                   <h3 className="payment-title text-3xl text-[#503020]">Forma de Pagamento</h3>
+
                   <div className="payment-methods">
                     {["credit", "debit", "pix"].map(m => (
                       <button
@@ -235,15 +242,16 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                     <div className="space-y-5">
                       <div><label>Número do cartão</label><input name="cardNumber" value={formData.cardNumber} onChange={handleChange} required /></div>
                       <div><label>Nome impresso no cartão</label><input name="cardName" value={formData.cardName} onChange={handleChange} required /></div>
+
                       <div className="grid grid-cols-2 gap-4">
-                        <div><label>Validade (MM/AA)</label><input name="cardExpiry" value={formData.cardExpiry} onChange={handleChange} required /></div>
+                        <div><label>Validade</label><input name="cardExpiry" value={formData.cardExpiry} onChange={handleChange} required /></div>
                         <div><label>CVV</label><input name="cardCVV" value={formData.cardCVV} onChange={handleChange} required /></div>
                       </div>
                     </div>
                   )}
 
                   {formData.paymentMethod === "pix" && (
-                    <p className="pix-info">O QR Code será mostrado na próxima etapa.</p>
+                    <p className="pix-info">O QR Code será exibido na próxima etapa.</p>
                   )}
                 </div>
               )}
@@ -253,9 +261,9 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                 <div className="fade-section">
                   <CheckCircle className="confirm-icon" />
                   <h3 className="text-3xl text-[#503020]">Confirmar Pedido</h3>
+
                   <p>Total: R$ {finalTotal.toFixed(2)}</p>
 
-                  {/* QR CODE PIX */}
                   {formData.paymentMethod === "pix" && pixCode && (
                     <div className="mt-4 flex flex-col items-center gap-4">
                       <p>Escaneie para pagar via PIX:</p>
@@ -265,13 +273,25 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                       <p className="text-sm break-all text-gray-700 text-center">{pixCode}</p>
                     </div>
                   )}
-
-                  <div className="action-row">
-                    {step > 1 && <button type="button" onClick={() => setStep(step - 1)} className="btn-outline">Voltar</button>}
-                    <button type="submit" className="btn-primary">{step < 3 ? "Continuar" : "Confirmar Pedido"}</button>
-                  </div>
                 </div>
               )}
+
+              {/* 🔥 BOTÕES SEMPRE VISÍVEIS */}
+              <div className="action-row mt-6">
+                {step > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => setStep(step - 1)}
+                    className="btn-outline"
+                  >
+                    Voltar
+                  </button>
+                )}
+
+                <button type="submit" className="btn-primary">
+                  {step < 3 ? "Continuar" : "Confirmar Pedido"}
+                </button>
+              </div>
             </form>
           </div>
 
@@ -279,18 +299,21 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
           <div className="lg:col-span-1">
             <div className="summary-card">
               <h3 className="summary-title">Resumo do Pedido</h3>
+
               {items.map(it => (
                 <div key={it.id} className="summary-item">
                   <span>{it.name} x {it.quantity}</span>
                   <span>R$ {(it.priceValue * it.quantity).toFixed(2)}</span>
                 </div>
               ))}
+
               {discount > 0 && (
                 <div className="summary-discount">
                   <span>Desconto</span>
                   <span>- R$ {discount.toFixed(2)}</span>
                 </div>
               )}
+
               <div className="summary-total">
                 <div className="summary-line">
                   <span>Subtotal</span>
