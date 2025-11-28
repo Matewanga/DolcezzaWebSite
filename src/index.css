@@ -2400,3 +2400,23 @@ body {
 *::-webkit-scrollbar-thumb:hover {
   background: #ff7fbf; /* rosa um pouco mais forte ao passar o mouse */
 }
+/* ============================ */
+/* RESET E LARGURA GLOBAL       */
+/* ============================ */
+
+* {
+  box-sizing: border-box; /* padding e border não aumentam largura */
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* remove scroll horizontal */
+}
+
+/* Imagens e elementos que podem extrapolar */
+img, video, iframe, .product-card, .some-section {
+  max-width: 100%;
+  height: auto;
+}

@@ -3,7 +3,7 @@
   position: sticky;
   top: 0;
   background: #fff;
-  z-index: 50;
+  z-index: 1000;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
@@ -11,7 +11,7 @@
 .container-header {
   max-width: 1400px;
   margin: auto;
-  padding: 8px 24px; /* navbar mais compacta */
+  padding: 8px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,21 +39,20 @@
   font-size: 20px;
   font-weight: 600;
   color: #503020;
-  line-height: 1; /* reduz o espaçamento interno */
+  line-height: 1;
 }
 
 .logo-sub {
   font-size: 11px;
   color: #777;
-  line-height: 1.1; /* controla a distância do título */
-  margin-top: 2px;  /* opcional */
+  line-height: 1.1;
+  margin-top: 2px;
 }
-
 
 /* BARRA DE PESQUISA */
 .header-search-desktop {
   position: relative;
-  width: 240px; /* menor largura */
+  width: 240px;
   min-width: 160px;
 }
 
@@ -67,7 +66,7 @@
 
 .search-input {
   width: 100%;
-  padding: 6px 12px 6px 32px; /* menor padding */
+  padding: 6px 12px 6px 32px;
   border: 1px solid #ddd;
   border-radius: 999px;
   font-size: 14px;
@@ -79,7 +78,7 @@
   outline: none;
 }
 
-/* DROPDOWN SEARCH */
+/* 🔽 DROPDOWN SEARCH */
 .search-dropdown {
   position: absolute;
   left: 0;
@@ -94,12 +93,28 @@
   z-index: 60;
 }
 
+/* ITEM – ALINHADO COM ÍCONES CENTRALIZADOS */
 .dropdown-item {
   display: flex;
+  align-items: center;       /* <-- CENTRALIZA O ÍCONE */
+  justify-content: space-between; /* <-- TEXTO à esquerda e ícones alinhados à direita */
   gap: 10px;
   padding: 6px 8px;
   border-radius: 8px;
   transition: 0.2s;
+  cursor: pointer;
+}
+
+.dropdown-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .dropdown-item:hover {
@@ -235,14 +250,15 @@
 
 /* 🔍 MOBILE SEARCH PANEL */
 .mobile-search-panel {
-  position: absolute;
-  top: 60px; /* aparece logo abaixo do header */
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  background: #fff;
+  height: auto;
+  background: white;
   padding: 14px;
-  z-index: 200; /* fica por cima de tudo */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 9999;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 .mobile-search-top {
@@ -276,14 +292,28 @@
 .mobile-result-item {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* <-- IGUAL AO DESKTOP */
   gap: 12px;
   padding: 10px;
   border-radius: 10px;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .mobile-result-item:hover {
   background: #fafafa;
+}
+
+.mobile-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .mobile-result-img {
@@ -302,25 +332,4 @@
 .mobile-result-cat {
   font-size: 12px;
   color: #777;
-}
-.mobile-search-panel {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: auto;
-  background: white;
-  padding: 14px;
-  z-index: 9999; /* ⭐ fica acima do Hero e do header */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-.navbar-main {
-  z-index: 1000;
-}
-
-/* Mostrar botão de busca no mobile apenas */
-@media (max-width: 940px) {
-  .btn-mobile-search {
-    display: block;
-  }
 }

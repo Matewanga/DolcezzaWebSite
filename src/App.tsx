@@ -4,8 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
+import Header from "./components/Header";
+import { Hero } from "./components/Hero";              //  <-- Faltava isso
 import { Products } from "./components/Products";
 import { Features } from "./components/Features";
 import { About } from "./components/About";
@@ -31,7 +31,7 @@ function AppContent() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [showFavorites, setShowFavorites] = useState(false);
 
-  const { totalItems, addToCart } = useCart();
+  const { addToCart } = useCart();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -58,17 +58,14 @@ function AppContent() {
     setIsCheckoutOpen(true);
   };
 
-  const getUserData = () => {
-    if (!user) return null;
-    return {
-      uid: user.uid,
-      name: user.displayName || user.name || "Usuário",
-      email: user.email || "sem-email@exemplo.com",
-      photoURL: user.photoURL || "/default-avatar.png",
-    };
-  };
-
-  const userData = getUserData();
+  const userData = user
+    ? {
+        uid: user.uid,
+        name: user.displayName || user.name || "Usuário",
+        email: user.email || "sem-email@exemplo.com",
+        photoURL: user.photoURL || "/default-avatar.png",
+      }
+    : null;
 
   return (
     <div className="min-h-screen bg-white">
@@ -143,7 +140,6 @@ export default function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        {/* Routes sem criar outro <BrowserRouter> */}
         <Routes>
           <Route path="/" element={<AppContent />} />
           <Route path="/creators" element={<Creators />} />

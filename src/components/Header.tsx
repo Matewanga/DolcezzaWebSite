@@ -18,7 +18,7 @@ interface HeaderProps {
 
 let productsCache: any[] | null = null;
 
-export function Header({
+export default function Header({
   onOpenAuth,
   onOpenCart,
   onOpenProfile,
@@ -28,7 +28,6 @@ export function Header({
 }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchMobileOpen, setIsSearchMobileOpen] = useState(false);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState<any[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
@@ -36,9 +35,9 @@ export function Header({
 
   const { totalItems } = useCart();
   const { user } = useAuth();
-
   const headerRef = useRef<HTMLDivElement | null>(null);
 
+  /* CLICK FORA */
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
@@ -51,6 +50,7 @@ export function Header({
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  /* BUSCAR PRODUTOS */
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -58,7 +58,6 @@ export function Header({
           setProducts(productsCache);
           return;
         }
-
         const snapshot = await getDocs(collection(db, "products"));
         const items: any[] = [];
         snapshot.forEach((doc) => items.push({ id: doc.id, ...doc.data() }));
@@ -72,6 +71,7 @@ export function Header({
     fetchProducts();
   }, []);
 
+  /* FILTRAR */
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setFilteredProducts([]);
@@ -97,12 +97,40 @@ export function Header({
     window.dispatchEvent(event);
   };
 
+  /* 🔥 SCROLL ATÉ O PRODUTO EXATO */
   const handleItemClick = (product: any) => {
+    const targetId = product.id;
+
     setSelectedCategory(product.category);
 
-    const element = document.getElementById(product.id);
-    if (element)
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    const tryScroll = async () => {
+      let item = document.getElementById(targetId);
+      let attempts = 0;
+
+      while (!item && attempts < 30) {
+        const btn = document.querySelector(".view-more-btn") as HTMLButtonElement;
+        if (btn) btn.click();
+
+        await new Promise((r) => setTimeout(r, 200));
+
+        item = document.getElementById(targetId);
+        attempts++;
+      }
+
+      if (item) {
+        const headerH = headerRef.current?.offsetHeight || 0;
+
+        const y =
+          item.getBoundingClientRect().top +
+          window.scrollY -
+          headerH -
+          10;
+
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    };
+
+    tryScroll();
 
     setSearchTerm("");
     setIsDropdownOpen(false);
@@ -113,43 +141,62 @@ export function Header({
   return (
     <header className="navbar-main" ref={headerRef}>
       <div className="container-header">
-        {/* LOGO */}
-        <a href="#home" className="header-logo flex items-center gap-2">
+
+        <a href="#home" className="header-logo">
           <div className="logo-circle">
-            <img
-              src={logo}
-              alt="Dolcezza Logo"
-              className="h-12 w-12 rounded-full object-cover"
-            />
+            <img src={logo} alt="Dolcezza Logo" />
           </div>
           <div className="logo-text">
-            <div className="logo-title font-bold text-lg">Dolcezza</div>
-            <div className="logo-sub text-sm text-gray-500">
-              Il piacere che derrete
-            </div>
+            <div className="logo-title">Dolcezza</div>
+            <div className="logo-sub">Il piacere che derrette</div>
           </div>
         </a>
 
-        {/* DESKTOP SEARCH */}
+        {/* 🔎 DESKTOP SEARCH — sem lupa */}
         <div className="header-search-desktop">
           <input
             type="text"
             placeholder="Buscar produtos..."
-            className="search-input"
             value={searchTerm}
             onChange={handleSearchChange}
+            className="search-input"
           />
+
+          {isDropdownOpen && filteredProducts.length > 0 && (
+            <div className="search-dropdown">
+              {filteredProducts.map((p) => (
+                <div
+                  key={p.id}
+                  className="dropdown-item"
+                  onClick={() => handleItemClick(p)}
+                >
+                  <img src={p.image} className="dropdown-img" />
+                  <div className="drop-text">
+                    <div className="dropdown-name">{p.name}</div>
+                    <div className="dropdown-cat">{p.category}</div>
+                  </div>
+
+                  <button
+                    className="dropdown-cart-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(p);
+                    }}
+                  >
+                    <ShoppingCart size={18} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {isDropdownOpen && filteredProducts.length === 0 && (
+            <div className="search-dropdown dropdown-empty">
+              Nenhum produto encontrado
+            </div>
+          )}
         </div>
 
-        {/* MOBILE SEARCH BUTTON */}
-        <button
-          className="btn-mobile-search"
-          onClick={() => setIsSearchMobileOpen((s) => !s)}
-        >
-          <Search className="icon-24" />
-        </button>
-
-        {/* NAV LINKS */}
         <nav className={`nav-links ${isMenuOpen ? "nav-open" : ""}`}>
           <a href="#home">Início</a>
           <a href="#products">Produtos</a>
@@ -157,7 +204,6 @@ export function Header({
           <a href="#contact">Contato</a>
         </nav>
 
-        {/* BUTTONS */}
         <div className="header-buttons">
           <button
             className="btn-fav"
@@ -171,14 +217,12 @@ export function Header({
 
           <button onClick={onOpenCart} className="btn-cart">
             <ShoppingCart className="icon-24" />
-            {totalItems > 0 && (
-              <span className="cart-badge">{totalItems}</span>
-            )}
+            {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
           </button>
 
           <button
             onClick={user ? onOpenProfile : onOpenAuth}
-            className="btn-login flex items-center gap-2"
+            className="btn-login"
           >
             <User className="icon-20" />
             <span>{user ? user.name || "Minha Conta" : "Entrar"}</span>
@@ -190,20 +234,27 @@ export function Header({
           >
             {isMenuOpen ? <X className="icon-28" /> : <Menu className="icon-28" />}
           </button>
+
+          {/* 🔍 MOBILE SEARCH */}
+          <button
+            className="btn-mobile-search"
+            onClick={() => setIsSearchMobileOpen((s) => !s)}
+          >
+            <Search className="icon-24" />
+          </button>
         </div>
       </div>
 
-      {/* 🔍 MOBILE SEARCH PANEL */}
       {isSearchMobileOpen && (
         <div className="mobile-search-panel">
           <div className="mobile-search-top">
             <input
               type="text"
-              className="mobile-search-input"
               placeholder="Buscar produtos..."
               value={searchTerm}
               onChange={handleSearchChange}
               autoFocus
+              className="mobile-search-input"
             />
 
             <button
@@ -218,7 +269,6 @@ export function Header({
             </button>
           </div>
 
-          {/* MOBILE SUGESTÕES */}
           {isDropdownOpen && (
             <div className="mobile-search-results">
               {filteredProducts.length > 0 ? (

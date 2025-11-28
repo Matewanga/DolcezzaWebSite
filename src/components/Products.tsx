@@ -31,10 +31,8 @@ export function Products({
   const [favorites, setFavorites] = useState<string[]>([]);
   const [visibleCount, setVisibleCount] = useState(6);
 
-  // posição salva antes de clicar em VER MAIS
   const [lastScrollPosition, setLastScrollPosition] = useState<number | null>(null);
 
-  // Buscar produtos
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -50,7 +48,6 @@ export function Products({
     fetchProducts();
   }, []);
 
-  // Buscar favoritos
   useEffect(() => {
     if (!user || !user.uid) return;
 
@@ -67,7 +64,6 @@ export function Products({
     fetchFavorites();
   }, [user]);
 
-  // Alternar favorito
   const toggleFavorite = async (product: any) => {
     if (!user || !user.uid) {
       toast.error("Faça login para favoritar produtos!");
@@ -98,7 +94,6 @@ export function Products({
     window.dispatchEvent(event);
   };
 
-  // FILTRAGEM
   let filteredProducts = products;
 
   if (showFavorites) {
@@ -125,7 +120,6 @@ export function Products({
 
       <div className="products-container">
 
-        {/* Categorias */}
         <div className="category-buttons">
           {categories.map(cat => (
             <button
@@ -145,7 +139,6 @@ export function Products({
           ))}
         </div>
 
-        {/* GRID */}
         <div className="products-grid">
           {visibleProducts.length > 0 ? (
             visibleProducts.map(product => (
@@ -155,7 +148,6 @@ export function Products({
 
                   {product.badge && <div className="product-badge">{product.badge}</div>}
 
-                  {/* Favorito */}
                   <button className="fav-btn" onClick={() => toggleFavorite(product)}>
                     <Heart className={`fav-icon ${favorites.includes(product.id) ? "fav-active" : ""}`} />
                   </button>
@@ -198,13 +190,13 @@ export function Products({
           )}
         </div>
 
-        {/* Ver Mais / Ver Menos */}
         <div className="view-more-wrapper">
           {visibleCount < filteredProducts.length && (
             <button
-              className="view-more-btn"
+              className="view-more-btn btn-load-more"
+              data-category={selectedCategory}
               onClick={() => {
-                setLastScrollPosition(window.scrollY); // salva onde estava
+                setLastScrollPosition(window.scrollY);
                 setVisibleCount(prev => prev + 6);
               }}
             >
