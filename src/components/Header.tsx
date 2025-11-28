@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ShoppingCart, User, Heart } from "lucide-react";
+import { Menu, X, ShoppingCart, User, Heart, Search } from "lucide-react";
 import { collection, getDocs } from "firebase/firestore";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
@@ -16,7 +16,6 @@ interface HeaderProps {
   setSelectedCategory: (cat: string) => void;
 }
 
-// 🔥 Cache para impedir chamadas repetidas ao Firestore
 let productsCache: any[] | null = null;
 
 export function Header({
@@ -28,6 +27,8 @@ export function Header({
   setSelectedCategory,
 }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchMobileOpen, setIsSearchMobileOpen] = useState(false);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState<any[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
@@ -35,6 +36,7 @@ export function Header({
 
   const { totalItems } = useCart();
   const { user } = useAuth();
+
   const headerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -42,13 +44,13 @@ export function Header({
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
         setIsMenuOpen(false);
         setIsDropdownOpen(false);
+        setIsSearchMobileOpen(false);
       }
     }
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  // 🔥 Apenas UMA requisição ao Firestore — evita o erro QUIC
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -70,7 +72,6 @@ export function Header({
     fetchProducts();
   }, []);
 
-  // 🔎 Filtro da busca
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setFilteredProducts([]);
@@ -105,12 +106,14 @@ export function Header({
 
     setSearchTerm("");
     setIsDropdownOpen(false);
+    setIsSearchMobileOpen(false);
     onSearch("");
   };
 
   return (
     <header className="navbar-main" ref={headerRef}>
       <div className="container-header">
+        {/* LOGO */}
         <a href="#home" className="header-logo flex items-center gap-2">
           <div className="logo-circle">
             <img
@@ -127,47 +130,26 @@ export function Header({
           </div>
         </a>
 
-        <div style={{ position: "relative", flex: 1, margin: "0 40px" }}>
+        {/* DESKTOP SEARCH */}
+        <div className="header-search-desktop">
           <input
             type="text"
             placeholder="Buscar produtos..."
-            className="header-search-input"
+            className="search-input"
             value={searchTerm}
             onChange={handleSearchChange}
           />
-
-          {isDropdownOpen && (
-            <div className="search-dropdown">
-              {filteredProducts.length > 0 ? (
-                filteredProducts.map((p) => (
-                  <div
-                    key={p.id}
-                    className="dropdown-item"
-                    onClick={() => handleItemClick(p)}
-                  >
-                    <img src={p.image} alt={p.name} className="dropdown-img" />
-                    <div>
-                      <div className="dropdown-name">{p.name}</div>
-                      <div className="dropdown-cat">{p.category}</div>
-                    </div>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleAddToCart(p);
-                      }}
-                      style={{ marginLeft: "auto" }}
-                    >
-                      <ShoppingCart size={18} />
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <div className="dropdown-empty">Nenhum produto encontrado</div>
-              )}
-            </div>
-          )}
         </div>
 
+        {/* MOBILE SEARCH BUTTON */}
+        <button
+          className="btn-mobile-search"
+          onClick={() => setIsSearchMobileOpen((s) => !s)}
+        >
+          <Search className="icon-24" />
+        </button>
+
+        {/* NAV LINKS */}
         <nav className={`nav-links ${isMenuOpen ? "nav-open" : ""}`}>
           <a href="#home">Início</a>
           <a href="#products">Produtos</a>
@@ -175,6 +157,7 @@ export function Header({
           <a href="#contact">Contato</a>
         </nav>
 
+        {/* BUTTONS */}
         <div className="header-buttons">
           <button
             className="btn-fav"
@@ -209,6 +192,56 @@ export function Header({
           </button>
         </div>
       </div>
+
+      {/* 🔍 MOBILE SEARCH PANEL */}
+      {isSearchMobileOpen && (
+        <div className="mobile-search-panel">
+          <div className="mobile-search-top">
+            <input
+              type="text"
+              className="mobile-search-input"
+              placeholder="Buscar produtos..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              autoFocus
+            />
+
+            <button
+              className="mobile-search-close"
+              onClick={() => {
+                setIsSearchMobileOpen(false);
+                setIsDropdownOpen(false);
+                setSearchTerm("");
+              }}
+            >
+              <X className="icon-24" />
+            </button>
+          </div>
+
+          {/* MOBILE SUGESTÕES */}
+          {isDropdownOpen && (
+            <div className="mobile-search-results">
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((p) => (
+                  <div
+                    key={p.id}
+                    className="mobile-result-item"
+                    onClick={() => handleItemClick(p)}
+                  >
+                    <img src={p.image} className="mobile-result-img" />
+                    <div>
+                      <div className="mobile-result-name">{p.name}</div>
+                      <div className="mobile-result-cat">{p.category}</div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="dropdown-empty">Nenhum produto encontrado</div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </header>
   );
 }

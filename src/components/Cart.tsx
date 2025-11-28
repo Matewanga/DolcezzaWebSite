@@ -12,18 +12,29 @@ interface CartProps {
   onCheckout: () => void;
 }
 
+interface Coupon {
+  code: string;
+  discount: number;
+}
+
 export function Cart({ isOpen, onClose, onCheckout }: CartProps) {
   const { items, removeFromCart, updateQuantity, totalItems, totalPrice } = useCart();
   const { user } = useAuth();
 
-  const [coupon, setCoupon] = useState(""); // estado do cupom
-  const [discount, setDiscount] = useState(0); // valor do desconto aplicado
-  const [couponApplied, setCouponApplied] = useState(false); // se já aplicou
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [couponApplied, setCouponApplied] = useState(false);
+
+  const coupons: Coupon[] = [
+    { code: "DOLCEZZAAMELHOR", discount: 30 },
+    { code: "O DOCERIA", discount: 5 },
+    { code: "DOLCEZZA", discount: 10 },
+  ];
 
   if (!isOpen) return null;
 
   const deliveryFee = totalPrice >= 100 ? 0 : 10;
-  const finalTotal = Math.max(totalPrice + deliveryFee - discount, 0); // aplica desconto
+  const finalTotal = Math.max(totalPrice + deliveryFee - discount, 0);
 
   const handleCheckout = () => {
     if (!user || !user.uid) {
@@ -34,7 +45,7 @@ export function Cart({ isOpen, onClose, onCheckout }: CartProps) {
   };
 
   const handleExploreProducts = () => {
-    onClose(); // Fecha o carrinho
+    onClose();
     const productsSection = document.getElementById("products");
     if (productsSection) {
       productsSection.scrollIntoView({ behavior: "smooth" });
@@ -42,14 +53,17 @@ export function Cart({ isOpen, onClose, onCheckout }: CartProps) {
   };
 
   const handleApplyCoupon = () => {
-    if (coupon.toUpperCase() === "DOLCEZZAAMELHOR" && !couponApplied) {
-      setDiscount(30);
-      setCouponApplied(true);
-      // dispara evento para Checkout
-      window.dispatchEvent(new CustomEvent("cartCouponApplied", { detail: 30 }));
-      alert("Cupom aplicado: R$30 de desconto!");
-    } else if (couponApplied) {
+    if (couponApplied) {
       alert("Cupom já foi aplicado!");
+      return;
+    }
+
+    const foundCoupon = coupons.find(c => c.code.toUpperCase() === coupon.toUpperCase());
+    if (foundCoupon) {
+      setDiscount(foundCoupon.discount);
+      setCouponApplied(true);
+      window.dispatchEvent(new CustomEvent("cartCouponApplied", { detail: foundCoupon.discount }));
+      alert(`Cupom aplicado: R$${foundCoupon.discount} de desconto!`);
     } else {
       alert("Cupom inválido");
       setDiscount(0);

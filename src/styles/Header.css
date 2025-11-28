@@ -232,3 +232,95 @@
   justify-content: center;
   gap: 8px;
 }
+
+/* 🔍 MOBILE SEARCH PANEL */
+.mobile-search-panel {
+  position: absolute;
+  top: 60px; /* aparece logo abaixo do header */
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 14px;
+  z-index: 200; /* fica por cima de tudo */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.mobile-search-top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.mobile-search-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.mobile-search-close {
+  background: none;
+  border: none;
+  padding: 4px;
+  color: #503020;
+}
+
+/* Lista de sugestões no mobile */
+.mobile-search-results {
+  margin-top: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.mobile-result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.mobile-result-item:hover {
+  background: #fafafa;
+}
+
+.mobile-result-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.mobile-result-name {
+  font-size: 14px;
+  color: #503020;
+  font-weight: 500;
+}
+
+.mobile-result-cat {
+  font-size: 12px;
+  color: #777;
+}
+.mobile-search-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  background: white;
+  padding: 14px;
+  z-index: 9999; /* ⭐ fica acima do Hero e do header */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+.navbar-main {
+  z-index: 1000;
+}
+
+/* Mostrar botão de busca no mobile apenas */
+@media (max-width: 940px) {
+  .btn-mobile-search {
+    display: block;
+  }
+}

@@ -51,8 +51,7 @@ export function Testimonials() {
     // média
     if (list.length > 0) {
       const avg =
-        list.reduce((acc, cur) => acc + (cur.rating || 0), 0) /
-        list.length;
+        list.reduce((acc, cur) => acc + (cur.rating || 0), 0) / list.length;
       setAverage(avg);
     } else {
       setAverage(0);
@@ -86,13 +85,7 @@ export function Testimonials() {
   const saveEdit = async () => {
     if (!editingId) return;
 
-    const ref = doc(
-      db,
-      "users",
-      user!.uid,
-      "testimonials",
-      editingId
-    );
+    const ref = doc(db, "users", user!.uid, "testimonials", editingId);
 
     await updateDoc(ref, {
       content: editContent,
@@ -106,7 +99,8 @@ export function Testimonials() {
   // 🔥 4 — Apagar depoimento
   const deleteTestimonial = async (t: any) => {
     if (!user) return;
-    if (t.userId !== user.uid) return alert("Você só pode excluir o seu depoimento!");
+    if (t.userId !== user.uid)
+      return alert("Você só pode excluir o seu depoimento!");
 
     const ref = doc(db, "users", user.uid, "testimonials", t.id);
     await deleteDoc(ref);
@@ -124,7 +118,7 @@ export function Testimonials() {
           <p>A satisfação dos nossos clientes é nossa maior conquista</p>
 
           <p className="average-rating">
-            Avaliação média:  ⭐ <b>{average.toFixed(1)}</b>
+            Avaliação média: ⭐ <b>{average.toFixed(1)}</b>
           </p>
         </div>
 
@@ -179,7 +173,7 @@ export function Testimonials() {
         {/* FORMULÁRIO DE ADICIONAR */}
         {user && (
           <div className="add-box">
-            <h3>Deixe seu depoimento: </h3>
+            <h3>Deixe seu depoimento</h3>
 
             <textarea
               placeholder="Escreva seu comentário..."
@@ -187,7 +181,7 @@ export function Testimonials() {
               onChange={(e) => setNewContent(e.target.value)}
             />
 
-            <label>Avaliação:</label>
+            <label className="label-strong">Avaliação:</label>
             <select
               value={newRating}
               onChange={(e) => setNewRating(Number(e.target.value))}
@@ -199,8 +193,9 @@ export function Testimonials() {
               <option value={1}>1 estrela</option>
             </select>
 
-           <button className="send-btn" onClick={addTestimonial}>Enviar</button>
-
+            <button className="send-btn" onClick={addTestimonial}>
+              Enviar
+            </button>
           </div>
         )}
 
@@ -226,8 +221,17 @@ export function Testimonials() {
                 <option value={1}>1 estrela</option>
               </select>
 
-              <button onClick={saveEdit}>Salvar</button>
-              <button onClick={() => setEditingId(null)}>Cancelar</button>
+              <div className="modal-actions">
+                <button className="save-btn" onClick={saveEdit}>
+                  Salvar
+                </button>
+                <button
+                  className="cancel-btn"
+                  onClick={() => setEditingId(null)}
+                >
+                  Cancelar
+                </button>
+              </div>
             </div>
           </div>
         )}

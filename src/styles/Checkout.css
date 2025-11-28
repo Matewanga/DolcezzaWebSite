@@ -220,8 +220,8 @@
 /* Alvo: o container branco que fica dentro do overlay (.fixed.inset-0 > .bg-white) */
 .fixed.inset-0 > .bg-white,
 .checkout-container {
-  max-width: 1180px !important;   /* aumentei mais o card geral */
-  padding: 3.6rem !important;     /* mais espaço interno */
+ max-width: 950px !important;   /* antes: 1100 ou 1180 */
+  padding: 2.2rem !important;    /* antes: 3.5rem / 3.6rem */
   border-radius: 28px !important;
   box-shadow: 0 26px 70px rgba(0,0,0,0.22) !important;
   transform: translateZ(0); /* força composição para sombras */
@@ -306,10 +306,10 @@ input:focus {
 /* estado ativo — sombra atrás e destaque marrom */
 .payment-btn.active,
 .payment-button.active {
-  background: linear-gradient(180deg, #fff3da 0%, #eed29f 100%);
   border-color: #503020;
-  box-shadow: 0 10px 30px rgba(80,48,32,0.22), inset 0 -6px 18px rgba(0,0,0,0.03);
-  position: relative;
+ min-height: 48px !important;   /* antes: 56px */
+  padding: 10px !important;      /* antes: 14px 12px */
+  border-radius: 12px !important;
 }
 
 /* sombra extra atrás do label do método (simulate "glow" atrás do nome do elemento) */
@@ -435,9 +435,9 @@ form .flex.gap-2.items-center.mb-4 input {
 .order-summary,
 .summary-card,
 .checkout-summary {
-  padding: 2.8rem !important;  /* aumentar */
   border-radius: 22px !important;
   box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+  padding: 1.8rem !important;    /* antes: 2.8rem e 3rem */
   transform: none !important;
   border: 1px solid rgba(80,48,32,0.06);
 }
@@ -540,4 +540,281 @@ form input:focus, form select:focus { border-color:#503020; }
 .payment-title {
   text-align: center;
   margin-bottom: 2rem; /* Espaço maior embaixo */
+}
+
+/* ==== OVERRIDE FINAL: REDUÇÃO DOS CARDS ==== */
+
+/* Card principal do checkout */
+.checkout-container,
+.fixed.inset-0 > .bg-white {
+  max-width: 760px !important;   /* reduzi bastante */
+  padding: 1.8rem !important; 
+  border-radius: 22px !important;
+}
+
+/* Cartões dos métodos de pagamento (cartão/pix) */
+.payment-btn,
+.payment-button {
+  min-height: 44px !important;   
+  padding: 8px 10px !important;
+  border-radius: 12px !important;
+}
+
+/* Card do QR Code PIX */
+.payment-pix-card,
+.pix-qr {
+  min-height: 110px !important;  
+  padding: 10px !important;
+  border-radius: 12px !important;
+}
+
+/* Resumo do pedido */
+.order-summary,
+.summary-card,
+.checkout-summary {
+  padding: 1.3rem !important;
+  border-radius: 18px !important;
+  transform: none !important;
+}
+
+/* ==== OVERRIDE FINAL — REDUZIR A ABA INTEIRA DO CHECKOUT ==== */
+
+/* A caixa branca que abre (MODAL) */
+.fixed.inset-0 > .bg-white,
+.checkout-container {
+  width: 85% !important;          /* ↓ reduz a largura total */
+  max-width: 720px !important;    /* ↓ antes estava 950–1100 */
+  padding: 1.4rem !important;     /* ↓ deixa o conteúdo menor */
+  border-radius: 20px !important;
+  transform: none !important;
+}
+
+/* Em telas grandes, reduzir ainda mais */
+@media (min-width: 1280px) {
+  .fixed.inset-0 > .bg-white,
+  .checkout-container {
+    max-width: 680px !important;
+  }
+}
+
+/* Reduz a altura e centraliza melhor */
+.fixed.inset-0 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+/* Evitar que os cartões internos aumentem o modal */
+.payment-section,
+.space-y-6,
+.fade-section {
+  max-width: 100% !important;
+}
+
+/* ====== REDUÇÃO REAL DO CARD PRINCIPAL ====== */
+
+/* ======== REDUÇÃO REAL DA ALTURA DO CHECKOUT ======== */
+
+/* Card principal */
+.checkout-wrapper {
+  max-width: 650px !important;
+  width: 90% !important;
+  padding: 1rem !important;              /* antes 1.5rem */
+  border-radius: 16px !important;
+}
+
+/* Títulos mais compactos */
+.checkout-wrapper h3,
+.payment-title {
+  font-size: 1.3rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+/* Reduz inputs, labels e espaçamentos */
+form label {
+  font-size: 0.9rem !important;
+  margin-bottom: 4px !important;
+}
+
+form input,
+form select {
+  padding: 0.45rem 0.65rem !important;
+  font-size: 0.9rem !important;
+  border-radius: 8px !important;
+}
+
+/* Reduz espaço entre seções */
+.space-y-6 > * {
+  margin-bottom: 0.6rem !important;
+}
+
+.space-y-5 > * {
+  margin-bottom: 0.5rem !important;
+}
+
+/* Reduz grade dos inputs */
+.grid {
+  gap: 0.6rem !important;
+}
+
+/* Botões principais menores */
+.btn-primary,
+.btn-outline {
+  padding: 0.55rem 1rem !important;
+  font-size: 0.95rem !important;
+  border-radius: 10px !important;
+}
+
+/* Botão cupom menor */
+.coupon-input {
+  padding: 0.45rem 0.6rem !important;
+  font-size: 0.9rem !important;
+}
+
+.coupon-btn {
+  padding: 0.45rem 0.8rem !important;
+  font-size: 0.9rem !important;
+  border-radius: 8px !important;
+}
+
+/* Cards de pagamento menores */
+.payment-btn {
+  min-height: 38px !important;
+  padding: 6px 8px !important;
+  font-size: 0.85rem !important;
+  border-radius: 10px !important;
+}
+
+/* QR CODE menor */
+.confirm-section .bg-white {
+  padding: 0.7rem !important;
+  border-radius: 10px !important;
+}
+
+.confirm-section canvas {
+  width: 150px !important;
+  height: 150px !important;
+}
+
+/* Texto PIX menor */
+.pix-info {
+  font-size: 0.85rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/* Resumo do pedido mais compacto */
+.summary-card {
+  padding: 1rem !important;
+  border-radius: 14px !important;
+}
+
+.summary-title {
+  font-size: 1.05rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.summary-item,
+.summary-discount,
+.summary-line {
+  font-size: 0.9rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.summary-line.total {
+  font-size: 1rem !important;
+}
+
+/* Círculos das etapas menores */
+.step-circle {
+  width: 38px !important;
+  height: 38px !important;
+}
+
+.step-circle svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Linha entre etapas menor */
+.step-line {
+  width: 35px !important;
+}
+
+/* Menos espaço no topo/bottom do modal */
+.fixed.inset-0 {
+  padding-top: 0.6rem !important;
+  padding-bottom: 0.6rem !important;
+}
+/* ================================
+   REDUZIR A ETAPA 3 (QR CODE)
+================================ */
+
+/* Container da etapa 3 */
+.confirm-section {
+  padding: 0.8rem 0 !important;              /* antes era ~2rem */
+}
+
+/* Ícone de confirmação menor */
+.confirm-icon {
+  font-size: 1.8rem !important;              /* antes 2.5rem */
+  margin-bottom: 0.4rem !important;
+}
+
+/* Título menor */
+.confirm-section h3 {
+  font-size: 1.3rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/* Texto "Total" menor */
+.confirm-section p {
+  font-size: 1rem !important;
+  margin-bottom: 0.3rem !important;
+}
+
+/* Ajuste do bloco que contém o QR */
+.confirm-section .flex.flex-col.items-center.gap-4 {
+  gap: 0.5rem !important;                    /* diminui espaço vertical */
+  margin-top: 0.5rem !important;
+}
+
+/* Card branco do QR Code */
+.confirm-section .bg-white {
+  padding: 0.6rem !important;                /* antes 1rem ou mais */
+  border-radius: 10px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
+}
+
+/* QR Code em si (canvas) */
+.confirm-section canvas {
+  width: 140px !important;                   /* antes 200px */
+  height: 140px !important;
+}
+
+/* Texto do código PIX */
+.confirm-section p.text-sm {
+  font-size: 0.75rem !important;
+  margin-top: 0.3rem !important;
+  line-height: 1.1rem !important;
+}
+
+/* Botões menores */
+.confirm-section .btn-primary,
+.confirm-section .btn-outline {
+  padding: 0.55rem 0.9rem !important;
+  font-size: 0.9rem !important;
+  border-radius: 10px !important;
+}
+
+/* Alinhar a linha dos botões */
+.confirm-section .action-row {
+  margin-top: 0.7rem !important;
+  gap: 0.6rem !important;
+}
+
+/* Reduz ainda mais em desktops grandes */
+@media (min-width: 1280px) {
+  .confirm-section canvas {
+    width: 130px !important;
+    height: 130px !important;
+  }
 }

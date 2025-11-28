@@ -1,4 +1,5 @@
 /* Overlay */
+/* Overlay */
 .cart-overlay {
   position: fixed;
   inset: 0;
@@ -6,7 +7,7 @@
   backdrop-filter: blur(4px);
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: flex-end; /* pode mudar para center se quiser centralizar vertical */
   z-index: 50;
   animation: fadeIn 0.3s ease;
 }
@@ -15,7 +16,7 @@
 .cart-container {
   width: 100%;
   max-width: 500px;
-  height: 95vh;
+  height: 85vh; /* antes era 95vh */
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -24,6 +25,7 @@
   animation: slideInRight 0.3s ease;
   overflow: hidden;
 }
+
 
 /* Header */
 .cart-header {

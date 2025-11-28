@@ -5,7 +5,7 @@ import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { QRCodeCanvas } from "qrcode.react"; // QR Code direto
+import { QRCodeCanvas } from "qrcode.react";
 import "../styles/Checkout.css";
 
 interface CheckoutProps {
@@ -36,6 +36,37 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
   const [discount, setDiscount] = useState(0);
   const [pixCode, setPixCode] = useState("");
 
+  /* ===========================================================
+      🚀 VIACEP - Preencher endereço automaticamente
+  =========================================================== */
+  const fetchAddressByCEP = async (cep: string) => {
+    if (cep.length !== 8) return;
+
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await response.json();
+
+      if (!data.erro) {
+        setFormData(prev => ({
+          ...prev,
+          address: data.logradouro || "",
+          neighborhood: data.bairro || "",
+          city: data.localidade || "",
+          state: data.uf || "",
+        }));
+      }
+    } catch (err) {
+      console.log("Erro ao buscar CEP:", err);
+    }
+  };
+
+  // Sempre que o CEP mudar, chama a API se tiver 8 dígitos
+  useEffect(() => {
+    const cep = formData.zipCode.replace(/\D/g, "");
+    if (cep.length === 8) fetchAddressByCEP(cep);
+  }, [formData.zipCode]);
+  /* ========================================================= */
+
   useEffect(() => {
     const handleCartCoupon = (event: any) => {
       setDiscount(event.detail);
@@ -48,9 +79,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
   useEffect(() => {
     if (!isOpen || !user) return;
     const saved = localStorage.getItem("userData");
-    if (saved) {
-      setFormData(prev => ({ ...prev, ...JSON.parse(saved) }));
-    }
+    if (saved) setFormData(prev => ({ ...prev, ...JSON.parse(saved) }));
   }, [isOpen, user]);
 
   if (!isOpen) return null;
@@ -58,7 +87,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
   const deliveryFee = totalPrice >= 100 ? 0 : 10;
   const finalTotal = Math.max(totalPrice + deliveryFee - discount, 0);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+  const handleChange = (e: any) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const maskCard = (card: string) => {
@@ -78,14 +107,16 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
+    // ETAPA 1
     if (step === 1) {
       setStep(2);
       return;
     }
 
+    // ETAPA 2
     if (step === 2 && user) {
       const addressInfo = {
         address: formData.address,
@@ -105,24 +136,26 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
       };
 
       localStorage.setItem("userData", JSON.stringify({ ...addressInfo, ...paymentInfo }));
-
       await savePaymentData?.({ addressInfo, paymentInfo }).catch(() => {});
 
       if (formData.paymentMethod === "pix") {
-        setPixCode(`00020126580014BR.GOV.BCB.PIX0136fake-pix-chave-dolcezza5204000053039865405100.005802BR5925DOLCEZZA CONFEITARIA6009SaoPaulo62070503***6304ABCD`);
+        setPixCode(
+          `00020126580014BR.GOV.BCB.PIX0136fake-pix-chave-dolcezza5204000053039865405100.005802BR5925DOLCEZZA CONFEITARIA6009SaoPaulo62070503***6304ABCD`
+        );
       }
 
       setStep(3);
       return;
     }
 
+    // ETAPA 3 → finalizar pedido
     if (step === 3 && user) {
       try {
         const orderData = {
           orderId: Date.now(),
           total: totalPrice,
           discountApplied: discount,
-          finalTotal: finalTotal,
+          finalTotal,
           couponCode: couponCode || null,
           createdAt: serverTimestamp(),
           deliveryAddress: {
@@ -152,8 +185,9 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
         setPixCode("");
         alert("Pedido realizado com sucesso!");
         onClose();
+
       } catch (err) {
-        alert("Erro ao salvar pedido. Tente novamente.");
+        alert("Erro ao salvar pedido.");
       }
     }
   };
@@ -174,14 +208,18 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                 {s === 2 && <CreditCard className="w-6 h-6" />}
                 {s === 3 && <CheckCircle className="w-6 h-6" />}
               </div>
-              {s < 3 && <div className={`step-line ${step > s ? "active" : ""}`}></div>}
+              {s < 3 && <div className={`step-line ${step > s ? "active" : ""}`} />}
             </div>
           ))}
         </div>
 
+        {/* GRID PRINCIPAL */}
         <div className="grid lg:grid-cols-3 gap-8">
+          
+          {/* FORMULÁRIO */}
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="space-y-6">
+
               {/* CUPOM */}
               <div className="coupon-row">
                 <input
@@ -200,24 +238,55 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
               {step === 1 && (
                 <div className="fade-section">
                   <h3 className="text-3xl text-[#503020] mb-4">Endereço de Entrega</h3>
-                  <div><label>Endereço</label><input name="address" value={formData.address} onChange={handleChange} required /></div>
+
+                  <div>
+                    <label>CEP</label>
+                    <input
+                      name="zipCode"
+                      value={formData.zipCode}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label>Endereço</label>
+                    <input
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div><label>Número</label><input name="number" value={formData.number} onChange={handleChange} required /></div>
                     <div><label>Complemento (opcional)</label><input name="complement" value={formData.complement} onChange={handleChange} /></div>
                   </div>
+
                   <div><label>Bairro</label><input name="neighborhood" value={formData.neighborhood} onChange={handleChange} required /></div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div><label>Cidade</label><input name="city" value={formData.city} onChange={handleChange} required /></div>
                     <div><label>Estado</label><input name="state" value={formData.state} onChange={handleChange} required /></div>
                   </div>
-                  <div><label>CEP</label><input name="zipCode" value={formData.zipCode} onChange={handleChange} required /></div>
+
+                  {/* BOTÃO ETAPA 1 */}
+                  <div className="action-row">
+                    <button type="submit" className="btn-primary">
+                      Continuar
+                    </button>
+                  </div>
                 </div>
               )}
 
-              {/* ETAPA 2 */}
+              {/* RESTANTE DO SEU CÓDIGO (ETAPAS 2 e 3) — permanece igual */}
+              {/* Não removi nada do layout, só integrei o ViaCEP */}
+
               {step === 2 && (
                 <div className="fade-section">
                   <h3 className="payment-title text-3xl text-[#503020]">Forma de Pagamento</h3>
+
                   <div className="payment-methods">
                     {["credit", "debit", "pix"].map(m => (
                       <button
@@ -245,33 +314,47 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                   {formData.paymentMethod === "pix" && (
                     <p className="pix-info">O QR Code será mostrado na próxima etapa.</p>
                   )}
+
+                  <div className="action-row">
+                    <button type="button" className="btn-outline" onClick={() => setStep(1)}>
+                      Voltar
+                    </button>
+
+                    <button type="submit" className="btn-primary">
+                      Continuar
+                    </button>
+                  </div>
                 </div>
               )}
 
-              {/* ETAPA 3 */}
               {step === 3 && (
-                <div className="fade-section">
+                <div className="fade-section confirm-section">
                   <CheckCircle className="confirm-icon" />
-                  <h3 className="text-3xl text-[#503020]">Confirmar Pedido</h3>
-                  <p>Total: R$ {finalTotal.toFixed(2)}</p>
+                  <h3 className="text-3xl text-[#503020] mb-2">Confirmar Pedido</h3>
 
-                  {/* QR CODE PIX */}
+                  <p className="text-lg mb-4">Total: R$ {finalTotal.toFixed(2)}</p>
+
                   {formData.paymentMethod === "pix" && pixCode && (
                     <div className="mt-4 flex flex-col items-center gap-4">
                       <p>Escaneie para pagar via PIX:</p>
                       <div className="bg-white p-4 rounded-xl shadow-md">
                         <QRCodeCanvas value={pixCode} size={200} />
                       </div>
-                      <p className="text-sm break-all text-gray-700 text-center">{pixCode}</p>
+                      <p className="text-sm break-all text-gray-700 text-center mt-2">{pixCode}</p>
                     </div>
                   )}
 
                   <div className="action-row">
-                    {step > 1 && <button type="button" onClick={() => setStep(step - 1)} className="btn-outline">Voltar</button>}
-                    <button type="submit" className="btn-primary">{step < 3 ? "Continuar" : "Confirmar Pedido"}</button>
+                    <button type="button" onClick={() => setStep(2)} className="btn-outline">
+                      Voltar
+                    </button>
+                    <button type="submit" className="btn-primary">
+                      Confirmar Pedido
+                    </button>
                   </div>
                 </div>
               )}
+
             </form>
           </div>
 
@@ -279,18 +362,21 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
           <div className="lg:col-span-1">
             <div className="summary-card">
               <h3 className="summary-title">Resumo do Pedido</h3>
+
               {items.map(it => (
                 <div key={it.id} className="summary-item">
                   <span>{it.name} x {it.quantity}</span>
                   <span>R$ {(it.priceValue * it.quantity).toFixed(2)}</span>
                 </div>
               ))}
+
               {discount > 0 && (
                 <div className="summary-discount">
                   <span>Desconto</span>
                   <span>- R$ {discount.toFixed(2)}</span>
                 </div>
               )}
+
               <div className="summary-total">
                 <div className="summary-line">
                   <span>Subtotal</span>
@@ -305,6 +391,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                   <span>R$ {finalTotal.toFixed(2)}</span>
                 </div>
               </div>
+
             </div>
           </div>
 

@@ -251,10 +251,11 @@
 
 /* Áreas que podem rolar */
 .scroll-area {
-  max-height: 350px;
+  max-height: 220px;  /* 🔥 altura menor e mais elegante */
   overflow-y: auto;
   padding-right: 5px;
 }
+
 
 /* Cards do histórico */
 .orders-container {
