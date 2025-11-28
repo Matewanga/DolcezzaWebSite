@@ -46,6 +46,7 @@ A identidade do website foi construída com tons suaves e acolhedores que remete
 ## 📱 **Tecnologias Utilizadas**
 - **React**
 - **Node.Js**
+- **TypeSript**
 - **Arquitetura MVC**
 - **Firebase**
 
