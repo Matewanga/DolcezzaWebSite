@@ -2420,3 +2420,6 @@ img, video, iframe, .product-card, .some-section {
   max-width: 100%;
   height: auto;
 }
+body {
+  padding-top:75; /* ajuste se seu header for maior ou menor */
+}

@@ -1,17 +1,17 @@
 /* ===================== HERO GERAL ===================== */
-
 .hero-section {
   position: relative;
-  overflow: visible; /* ⭐ permite o painel de busca mobile aparecer */
+  overflow: visible;
   background: linear-gradient(to bottom right, #f5e6c8, white, #eed29f);
   height: 100vh;
   display: flex;
   align-items: center;
-  z-index: 1; /* ⭐ abaixo do header e do painel de busca */
+  z-index: 1;
+  padding-top: 80px; /* espaço para o header fixo */
+  box-sizing: border-box;
 }
 
 /* ===================== DECORAÇÃO ===================== */
-
 .hero-deco-circle {
   position: absolute;
   border-radius: 50%;
@@ -35,7 +35,6 @@
 }
 
 /* ===================== GRID ===================== */
-
 .hero-container {
   width: 100%;
   max-width: 1300px;
@@ -49,16 +48,15 @@
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
-  height: 100%;
+  height: calc(100% - 80px); /* desconta o padding do header */
 }
 
 /* ===================== TEXTO ===================== */
-
 .hero-text {
   display: flex;
   flex-direction: column;
   gap: 22px;
-  transform: translateY(-40px);
+  transform: translateY(-20px); /* sobe o conteúdo um pouco */
   padding-left: 30px;
 }
 
@@ -83,7 +81,6 @@
 }
 
 /* ===================== BOTÕES ===================== */
-
 .hero-buttons {
   display: flex;
   gap: 14px;
@@ -125,7 +122,6 @@
 }
 
 /* ===================== FEATURES ===================== */
-
 .hero-features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -151,18 +147,17 @@
 }
 
 /* ===================== IMAGEM ===================== */
-
 .hero-image-wrapper {
   position: relative;
   height: 100%;
-  transform: translateX(25px);
+  transform: translate(25px, -20px); /* sobe a imagem */
 }
 
 .hero-image-container {
   position: relative;
   overflow: hidden;
   border-radius: 24px;
-  height: 100vh;
+  height: 95vh; /* aumentada de 90vh para 95vh */
 }
 
 .hero-image {
@@ -202,11 +197,10 @@
 }
 
 /* ===================== MOBILE ===================== */
-
 @media (max-width: 900px) {
 
   .hero-section {
-    height: auto; /* ⭐ evita cortar a busca mobile */
+    height: auto; /* evita cortar a busca mobile */
     padding: 40px 0;
     overflow: visible;
   }
@@ -249,6 +243,6 @@
   }
 
   .hero-image-container {
-    height: 40vh; /* ⭐ imagem muito mais confortável no mobile */
+    height: 45vh; /* aumentada de 40vh para 45vh */
   }
 }

@@ -59,7 +59,7 @@ export function About() {
               <h2 className="about-title">Uma História de Paixão e Dedicação</h2>
 
               <p className="about-text-lg">
-                Há mais de 10 anos, a Doce Encanto nasceu do sonho de transformar momentos simples em memórias doces e inesquecíveis.
+                Há mais de 10 anos, a Dolcezza nasceu do sonho de transformar momentos simples em memórias doces e inesquecíveis.
               </p>
 
               <p className="about-text-md">

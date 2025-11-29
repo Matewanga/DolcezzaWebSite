@@ -1,5 +1,4 @@
 /* Overlay */
-/* Overlay */
 .cart-overlay {
   position: fixed;
   inset: 0;
@@ -7,16 +6,19 @@
   backdrop-filter: blur(4px);
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end; /* pode mudar para center se quiser centralizar vertical */
+  align-items: flex-end;
   z-index: 50;
   animation: fadeIn 0.3s ease;
 }
 
-/* Container */
+/* Container — altura dinâmica sem invadir o header */
 .cart-container {
   width: 100%;
   max-width: 500px;
-  height: 85vh; /* antes era 95vh */
+
+  /* A cart nunca invade o header! */
+  max-height: calc(100vh - 70px);
+
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -24,8 +26,10 @@
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   animation: slideInRight 0.3s ease;
   overflow: hidden;
-}
 
+  /* afastamento do topo para não encostar no header */
+  margin-top: 70px;
+}
 
 /* Header */
 .cart-header {
@@ -212,17 +216,20 @@
   border-color: #503020;
 }
 
-/* Footer */
+/* Footer — abaixado um pouco */
 .cart-footer {
   padding: 1.5rem;
   border-top: 1px solid #ccc;
   background: #fff;
+  margin-top: 1.2rem; /* mais espaçamento */
 }
 
+/* Cupom — mais afastado */
 .cart-coupon {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  margin-top: 1rem; /* cupom mais baixo ainda */
 }
 
 .cart-coupon-input {

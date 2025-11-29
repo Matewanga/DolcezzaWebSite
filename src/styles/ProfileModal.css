@@ -7,44 +7,38 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
-    
-    /* Efeito de embaçamento */
-    backdrop-filter: blur(5px); /* Ajuste o valor para mais ou menos embaçado */
-    -webkit-backdrop-filter: blur(5px); /* Para compatibilidade com navegadores Webkit */
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
-/* 2. O Card do Perfil (Modal em si) */
+/* 2. Card do Perfil */
 .profile-modal {
-    position: relative; /* Para posicionar o botão de fechar */
-    background-color: #ffffff; /* Fundo branco para o card */
-    padding: 40px 30px; /* Preenchimento interno */
-    border-radius: 15px; /* Bordas mais arredondadas (ajuste conforme o gosto) */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Sombra mais pronunciada */
+    position: relative;
+    background-color: #ffffff;
+    padding: 20px 10px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     text-align: center;
-    max-width: 400px; /* Largura máxima para a modal */
-    width: 90%; /* Ocupa 90% da largura disponível, mas não mais que max-width */
-    animation: fadeIn 0.3s ease-out; /* Adiciona uma animação suave ao aparecer */
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.3s ease-out;
+
+    /* 🔥 AJUSTE PEDIDO — DESCER O CART/HISTÓRICO */
+    margin-top: 70px;
 }
 
-/* Animação para a modal aparecer */
+/* Animação */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-
-/* Botão de Fechar */
+/* Botão de fechar */
 .auth-close {
     position: absolute;
     top: 15px;
@@ -53,56 +47,48 @@
     border: none;
     cursor: pointer;
     color: #666;
-    transition: color 0.2s ease;
 }
+.auth-close:hover { color: #333; }
 
-.auth-close:hover {
-    color: #333;
-}
-
-/* Estilo do Ícone (Avatar Padrão) */
+/* Avatar */
 .profile-icon-wrapper {
-    width: 90px; /* Levemente maior */
+    width: 90px;
     height: 90px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #FFC0CB, #ADD8E6); /* Gradiente suave para um toque "bonitinho" */
-    /* Ou uma cor sólida: background-color: var(--primary-color, #f48fb1); */
+    background: linear-gradient(45deg, #FFC0CB, #ADD8E6);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px auto; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra mais definida */
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 .profile-icon {
     color: #fff;
-    font-size: 50px; /* Ajusta o tamanho do ícone */
+    font-size: 50px;
 }
 
-/* Estilo dos textos */
+/* Textos */
 .profile-name-display {
-    font-size: 2rem; /* Um pouco maior */
-    color: #333; /* Cor mais escura para destaque */
+    font-size: 2rem;
+    color: #333;
     margin-bottom: 5px;
     font-weight: bold;
 }
-
 .profile-email-display {
     font-size: 1rem;
     color: #777;
-    margin-bottom: 30px; /* Mais espaço antes das ações */
+    margin-bottom: 30px;
 }
 
-/* Estilo das Ações (Favoritos, Compras, Configurações) */
+/* Ações */
 .profile-actions {
     display: flex;
-    justify-content: space-around; /* Distribui os botões uniformemente */
-    gap: 10px; /* Espaçamento entre os botões */
+    justify-content: space-around;
+    gap: 10px;
     margin-bottom: 30px;
     border-top: 1px solid #eee;
     padding-top: 20px;
 }
-
 .action-btn {
     background: none;
     border: none;
@@ -114,54 +100,50 @@
     cursor: pointer;
     transition: all 0.2s ease;
     padding: 8px 5px;
-    border-radius: 8px; /* Bordas arredondadas para os botões de ação */
+    border-radius: 8px;
 }
-
 .action-btn svg {
     margin-bottom: 5px;
-    color: var(--primary-color, #f48fb1); /* Cor do ícone */
+    color: var(--primary-color, #f48fb1);
 }
-
 .action-btn:hover {
     color: #333;
-    background-color: #f8f8f8; /* Leve fundo ao passar o mouse */
-    transform: translateY(-2px); /* Efeito suave de "levitação" */
+    background-color: #f8f8f8;
+    transform: translateY(-2px);
 }
 
-/* Formulário de Edição */
+/* ==========================================
+   🔥  ÁREA DE EDIÇÃO (RESTAURADA — SEM MUDANÇAS)
+   ========================================== */
 .profile-edit-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 20px;
     padding: 20px;
-    background-color: #f9f9f9; /* Fundo suave para o formulário */
+    background-color: #f9f9f9;
     border-radius: 10px;
     border: 1px solid #eee;
 }
-
 .profile-edit-form label {
     text-align: left;
     font-size: 0.9rem;
     color: #555;
     font-weight: bold;
 }
-
 .profile-edit-form input {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
     width: 100%;
-    box-sizing: border-box; /* Garante que padding não aumenta a largura total */
+    box-sizing: border-box;
 }
-
 .profile-edit-form input:focus {
     outline: none;
     border-color: var(--primary-color, #f48fb1);
-    box-shadow: 0 0 0 3px rgba(244, 143, 177, 0.2); /* Sombra de foco */
+    box-shadow: 0 0 0 3px rgba(244, 143, 177, 0.2);
 }
-
 .save-btn {
     background-color: var(--primary-color, #f48fb1);
     color: white;
@@ -174,15 +156,14 @@
     transition: background-color 0.2s ease, transform 0.2s ease;
     margin-top: 10px;
 }
-
 .save-btn:hover {
-    background-color: #e07aa0; /* Tom mais escuro no hover */
+    background-color: #e07aa0;
     transform: translateY(-1px);
 }
 
-/* Botão de Sair */
+/* Botão de sair */
 .logout-btn {
-    background-color: #ff4d4f; /* Cor de alerta para sair */
+    background-color: #ff4d4f;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -190,119 +171,106 @@
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    transition: background-color 0.2s ease;
     margin-top: 30px;
-    width: 100%; /* Ocupa a largura total */
+    width: 100%;
 }
+.logout-btn:hover { background-color: #e60000; }
 
-.logout-btn:hover {
-    background-color: #e60000;
-}
-
-/* Algumas variáveis de cor (opcional, se você não tiver globalmente) */
+/* Variáveis */
 :root {
-  --primary-color: #f48fb1; /* Rosa claro */
-  --secondary-color: #ADD8E6; /* Azul claro */
-  --text-color-dark: #333;
-  --text-color-light: #777;
+    --primary-color: #f48fb1;
+    --secondary-color: #ADD8E6;
+    --text-color-dark: #333;
+    --text-color-light: #777;
 }
+
+/* ==========================================
+   🔥  HISTÓRICO (AJUSTADO COMO PEDIDO)
+   ========================================== */
+
+/* Abas */
 .profile-tabs {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px 0;
-  border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    border-bottom: 1px solid #eee;
 }
-
 .tab {
-  background: none;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  color: #666;
-  font-weight: 500;
-  transition: all .2s ease;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color: #666;
+    font-weight: 500;
+    transition: all .2s ease;
 }
-
 .tab.active {
-  color: var(--primary-color);
-  border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .tab-content {
-  margin-top: 20px;
-  max-height: 280px;
-  overflow-y: auto;
+    margin-top: 20px;
+    max-height: 280px;
+    overflow-y: auto;
 }
 
-.history-card {
-  padding: 12px;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,.05);
-}
-
-.empty {
-  color: #777;
-  text-align: center;
-  padding: 20px;
-}
-
-/* Áreas que podem rolar */
+/* Área que rola */
 .scroll-area {
-  max-height: 220px;  /* 🔥 altura menor e mais elegante */
-  overflow-y: auto;
-  padding-right: 5px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding-right: 5px;
 }
 
-
-/* Cards do histórico */
+/* Lista de pedidos */
 .orders-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
+/* Card principal do pedido */
 .order-card {
-  background: #f2f2f2;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: left;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
 }
 
-/* Cards dos produtos dentro de cada pedido */
-.product-card {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 8px;
-  border-radius: 8px;
-  margin-top: 8px;
-}
-
+/* Produtos dentro do pedido */
 .product-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.product-card {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
 }
 
-/* Separar as linhas do histórico */
-.order-card p {
-  margin: 4px 0;
+/* Sem histórico */
+.empty {
+    color: #777;
+    text-align: center;
+    padding: 20px;
 }
 
 /* Botão voltar */
 .back-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 10px;
-  color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-/* Seleção Rosa */
+/* Seleção */
 ::selection {
-  background: #ffb7d5; 
-  color: #fff;
+    background: #ffb7d5;
+    color: #fff;
 }
