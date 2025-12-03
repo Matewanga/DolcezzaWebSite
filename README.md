@@ -75,7 +75,7 @@ Este projeto é de uso acadêmico. Sinta-se livre para explorar e se inspirar.
 
 Gostaríamos de agradecer a todos que visitaram o nosso repositório. Caso queira se conectar conosco, estamos disponíveis através do nosso e-mail e LinkedIn:
 
-João Pedro Machado
+João Pedro Machado:
 
 [![Linkedin](https://img.shields.io/badge/LinkedIn-8B5E3C?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jo4n/)  
 [![Gmail](https://img.shields.io/badge/Gmail-F8C8D8?style=for-the-badge&logo=gmail&logoColor=42292A)](mailto:jdasilvamachado1@gmail.com)
@@ -87,13 +87,13 @@ Giovanna Aparecida:
 [![Gmail](https://img.shields.io/badge/Gmail-F8C8D8?style=for-the-badge&logo=gmail&logoColor=42292A)](mailto:)
 
 
-Mariana Ocireu
+Mariana Ocireu:
 
 [![Linkedin](https://img.shields.io/badge/LinkedIn-8B5E3C?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mariana-ocireu-61aa722b3/)  
 [![Gmail](https://img.shields.io/badge/Gmail-F8C8D8?style=for-the-badge&logo=gmail&logoColor=42292A)](mailto:marianaocireu@gmail.com)
 
 
-Rebeca Matewanga
+Rebeca Matewanga:
 
 [![Linkedin](https://img.shields.io/badge/LinkedIn-8B5E3C?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marianaociz/)  
 [![Gmail](https://img.shields.io/badge/Gmail-F8C8D8?style=for-the-badge&logo=gmail&logoColor=42292A)](mailto:rebeca.kamalandua@gmail.com)
